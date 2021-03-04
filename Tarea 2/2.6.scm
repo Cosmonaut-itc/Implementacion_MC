@@ -1,5 +1,3 @@
-#lang racket
-
 (define (deep-reverse lst)
   (if (null? lst)
       '()
