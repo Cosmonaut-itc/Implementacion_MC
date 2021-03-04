@@ -1,5 +1,3 @@
-#lang racket
-
 (define (duplicate lst)
   (if (empty? lst)
       '()
