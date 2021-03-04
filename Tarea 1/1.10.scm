@@ -1,5 +1,3 @@
-#lang racket
-
 (define (positives lst)
   (if (empty? lst)
       '()
