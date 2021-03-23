@@ -5,12 +5,14 @@
 #ifndef IMPLEMENTACION_MC_TOKEN_H
 #define IMPLEMENTACION_MC_TOKEN_H
 
+#include <string>
+
 using namespace std;
-class token {
+
+class Token {
 private:
-    char tokenChar;
-    string type;
-    
+    string tokenString;
+    string tokenType;
 };
 
 
