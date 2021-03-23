@@ -18,40 +18,7 @@ vector<string> readFile(){
     string word  = "";
     while (!archivo.eof()) {
         getline(archivo, texto);
-        int comentario = 0;
-        bool isComentario = false;
-        for (char s : texto) {
-            if (isComentario == false){
-                if (s == ' ') {
-                    words.push_back(word);
-                    word = "";
-                    comentario = 0;
-                } else {
-                    word += s;
-                    if (comentario == 1){
-                        if (s != '/'){
-                            comentario = 0;
-                        }
-                    }
-                }
-                if (s == '/'){
-                    comentario ++;
-                    if (comentario == 2){
-                        isComentario = true;
-                    }
-                    if (word != "//"){
-                        string word2 = "";
-                        for (int i = 0; i < word.length() - 2; i++){
-                            word2 += word[i];
-                        }
-                        words.push_back(word2);
-                        word = "//";
-                    }
-                }
-            } else{
-                word += s;
-            }
-        }
+        words.push_back(texto);
     }
     archivo.close();
     return words;
