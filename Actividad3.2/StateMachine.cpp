@@ -21,7 +21,7 @@ StateMachine::StateMachine() {
     };
     static const std::map<string, int> q2Table{
             {"Espacio",     0},
-            {"Operador",  2}
+            {"Operador",  0}
     };
     static const std::map<string, int> q3Table{
             {"Espacio",     0},
@@ -31,11 +31,11 @@ StateMachine::StateMachine() {
     };
     static const std::map<string, int> q4Table{
             {"Espacio",     0},
-            {"Paréntesis que abre",  4}
+            {"Paréntesis que abre",  0}
     };
     static const std::map<string, int> q5Table{
             {"Espacio",     0},
-            {"Paréntesis que cierra",  5}
+            {"Paréntesis que cierra",  0}
     };
     static const std::map<string, int> q6Table{
             {"Asignación", 6},
