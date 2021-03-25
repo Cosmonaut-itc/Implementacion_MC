@@ -90,8 +90,8 @@ StateMachine::StateMachine() {
     this->transitionTable.push_back(q11Table);
     this->transitionTable.push_back(q12Table);
 
-    vector<int> terminalTable{true, false};
-    this->terminalTable = terminalTable;
+    // Is q0 terminal
+    this->terminalTable.push_back(true);
 }
 
 void StateMachine::nextState(const string& input) {
