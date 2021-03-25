@@ -7,7 +7,7 @@
 
 CharacterData::CharacterData(char characterChar) : characterChar(characterChar) {
     if (isdigit(characterChar)) {
-        this->characterType = "Digito";
+        this->characterType = "Dígito";
     } else {
         if (isalpha(characterChar)) {
             this->characterType = "Letra";
@@ -20,13 +20,11 @@ CharacterData::CharacterData(char characterChar) : characterChar(characterChar) 
                             {'*', "Multipliación"},
                             {'/', "División"},
                             {'^', "Potencia"},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {},
-                            {}
+                            {' ', "Espacio"},
+                            {'.', "Punto"},
+                            {'(', "Parentesís que abre"},
+                            {')', "Paréntesis que cierra"},
+                            {'_',"UnderScore"}
                     }
             };
             this->characterType = characterTable.find(characterChar)->second;
