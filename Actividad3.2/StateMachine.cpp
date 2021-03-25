@@ -6,7 +6,7 @@
 
 StateMachine::StateMachine() {
 
-    const std::map<char, string> stateTable{
+    std::map<char, string> declareStateTable{
             {
                     {'=', "Asignación"},
                     {'+', "Suma"},
@@ -21,5 +21,5 @@ StateMachine::StateMachine() {
                     {'_',"UnderScore"}
             }
     };
-    this->stateTable = stateTable;
+    this->stateTable = declareStateTable;
 }

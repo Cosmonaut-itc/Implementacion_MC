@@ -11,7 +11,7 @@
 using namespace std;
 class StateMachine {
 private:
-    static const std::map<char, string> stateTable;
+    std::map<char, string> stateTable;
 public:
     StateMachine();
 };
