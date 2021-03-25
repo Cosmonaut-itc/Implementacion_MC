@@ -47,37 +47,30 @@ StateMachine::StateMachine() {
             {"Resta",  7}
     };
     static const std::map<string, int> q7Table{
-            {"Letra",  3},
-            {"Dígito", 8},
-            {"Resta",  7}
+            {"Digito",  8},
+            {"Espacio", 0}
     };
     static const std::map<string, int> q8Table{
-            {"Espacio",     0},
-            {"Letra",  3},
+            {"Espacio",0},
             {"Dígito", 8},
-            {"Resta",  7}
+            {"Punto",  9}
     };
     static const std::map<string, int> q9Table{
             {"Espacio",     0},
-            {"Letra",  3},
-            {"Dígito", 8},
-            {"Resta",  7}
+            {"Dígito", 9},
+            {"Exponencial",  10}
     };
     static const std::map<string, int> q10Table{
-            {"Letra",  3},
-            {"Dígito", 8},
-            {"Resta",  7}
+            {"Dígito", 12},
+            {"Resta",  11}
     };
     static const std::map<string, int> q11Table{
-            {"Letra",  3},
-            {"Dígito", 8},
-            {"Resta",  7}
+            {"Espacio",  0},
+            {"Dígito", 11}
     };
     static const std::map<string, int> q12Table{
             {"Espacio",     0},
-            {"Letra",  3},
-            {"Dígito", 8},
-            {"Resta",  7}
+            {"Dígito", 12}
     };
     this->transitionTable.push_back(q0Table);
     this->transitionTable.push_back(q1Table);
