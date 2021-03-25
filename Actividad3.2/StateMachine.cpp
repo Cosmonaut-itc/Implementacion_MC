@@ -89,4 +89,17 @@ StateMachine::StateMachine() {
     this->transitionTable.push_back(q10Table);
     this->transitionTable.push_back(q11Table);
     this->transitionTable.push_back(q12Table);
+
+    vector<int> terminalTablex{true, false};
+    this->terminalTable = terminalTable;
+}
+
+void StateMachine::nextState(const string& input) {
+    std::map<string, int> currentTable = transitionTable[currentState];
+    int nextState = currentTable.find(input)->second;
+    this->currentState = nextState;
+}
+
+void StateMachine::resetMachine() {
+    this->currentState = 0;
 }

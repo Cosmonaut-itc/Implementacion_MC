@@ -13,9 +13,12 @@ using namespace std;
 class StateMachine {
 private:
     vector<std::map<string, int>> transitionTable;
+    vector<bool> terminalTable;
     int currentState;
 public:
     StateMachine();
+    void nextState(const string& input);
+    void resetMachine();
 };
 
 
