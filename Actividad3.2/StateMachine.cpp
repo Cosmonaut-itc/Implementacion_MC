@@ -90,7 +90,12 @@ StateMachine::StateMachine() {
     this->transitionTable.push_back(q12Table);
 
     // Is q0 terminal
-    this->terminalTable.push_back(true);
+    for(int i = 0; i<12;i++) {
+        if(i == 9 || i == 10) {
+            this->terminalTable.push_back(false);
+        }
+        this->terminalTable.push_back(true);
+    }
 }
 
 void StateMachine::nextState(const string& input) {
