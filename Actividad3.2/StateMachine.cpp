@@ -7,62 +7,62 @@
 StateMachine::StateMachine() {
     this->currentState = 0;
     static const std::map<string, int> q0Table{
-            {"Espacio",     0},
-            {"División",  1},
-            {"Operador", 2},
-            {"Letra", 3},
-            {"Paréntesis que abre", 4},
+            {"Espacio",               0},
+            {"División",              1},
+            {"Operador",              2},
+            {"Letra",                 3},
+            {"Paréntesis que abre",   4},
             {"Paréntesis que cierra", 5},
-            {"Resta",  7},
-            {"Digito",  8}
+            {"Resta",                 7},
+            {"Digito",                8}
     };
     static const std::map<string, int> q1Table{
-            {"División",  6}
+            {"División", 6}
     };
     static const std::map<string, int> q2Table{
-            {"Espacio",     0},
-            {"Operador",  2}
+            {"Espacio",  0},
+            {"Operador", 2}
     };
     static const std::map<string, int> q3Table{
-            {"Espacio",     0},
-            {"Letra",  3},
+            {"Espacio",    0},
+            {"Letra",      3},
             {"Underscore", 3},
-            {"Digito",  3}
+            {"Digito",     3}
     };
     static const std::map<string, int> q4Table{
-            {"Espacio",     0},
-            {"Paréntesis que abre",  4}
+            {"Espacio",             0},
+            {"Paréntesis que abre", 4}
     };
     static const std::map<string, int> q5Table{
-            {"Espacio",     0},
-            {"Paréntesis que cierra",  5}
+            {"Espacio",               0},
+            {"Paréntesis que cierra", 5}
     };
     static const std::map<string, int> q6Table{
-            {"Asignación", 6},
-            {"Suma", 6},
-            {"Resta", 6},
-            {"Multipliación", 6},
-            {"División", 6},
-            {"Potencia", 6},
-            {"Espacio", 6},
-            {"Punto", 6},
-            {"Parentesís que abre", 6},
+            {"Asignación",            6},
+            {"Suma",                  6},
+            {"Resta",                 6},
+            {"Multipliación",         6},
+            {"División",              6},
+            {"Potencia",              6},
+            {"Espacio",               6},
+            {"Punto",                 6},
+            {"Parentesís que abre",   6},
             {"Paréntesis que cierra", 6},
-            {"UnderScore", 6}
+            {"UnderScore",            6}
     };
     static const std::map<string, int> q7Table{
             {"Digito",  8},
             {"Espacio", 0}
     };
     static const std::map<string, int> q8Table{
-            {"Espacio",0},
-            {"Dígito", 8},
-            {"Punto",  9}
+            {"Espacio", 0},
+            {"Dígito",  8},
+            {"Punto",   9}
     };
     static const std::map<string, int> q9Table{
             {"Espacio",     0},
-            {"Dígito", 9},
-            {"Exponencial",  10}
+            {"Dígito",      9},
+            {"Exponencial", 10}
     };
     static const std::map<string, int> q10Table{
             {"Dígito", 12},
@@ -72,8 +72,8 @@ StateMachine::StateMachine() {
             {"Dígito", 11}
     };
     static const std::map<string, int> q12Table{
-            {"Espacio",     0},
-            {"Dígito", 12}
+            {"Espacio", 0},
+            {"Dígito",  12}
     };
     this->transitionTable.push_back(q0Table);
     this->transitionTable.push_back(q1Table);
@@ -98,10 +98,24 @@ StateMachine::StateMachine() {
     }
 }
 
-void StateMachine::nextState(const string& input) {
+void StateMachine::nextState(const string &input) {
     std::map<string, int> currentTable = transitionTable[currentState];
-    int nextState = currentTable.find(input)->second;
-    this->currentState = nextState;
+    // Search the input in the current node table
+    if (currentTable.find(input) == currentTable.end()) {
+        // If not found
+        if(this->terminalTable[currentState] == false){
+            //Error
+            // Do error code
+        }else{
+            // If its terminal state return to beginning of state machine
+            this->currentState = 0;
+        }
+    } else {
+        // If found
+        int nextState = currentTable.find(input)->second;
+        this->currentState = nextState;
+    }
+
 }
 
 void StateMachine::resetMachine() {
