@@ -7,11 +7,13 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
 
 using namespace std;
 class StateMachine {
 private:
-    std::map<char, string> stateTable;
+    vector<std::map<string, int>> transitionTable;
+    int currentState;
 public:
     StateMachine();
 };
