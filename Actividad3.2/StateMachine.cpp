@@ -100,15 +100,17 @@ StateMachine::StateMachine() {
 
 void StateMachine::nextState(const string &input) {
     std::map<string, int> currentTable = transitionTable[currentState];
+
     // Search the input in the current node table
     if (currentTable.find(input) == currentTable.end()) {
         // If not found
-        if(this->terminalTable[currentState] == false){
+        if(this->terminalTable[currentState]){
             //Error
             // Do error code
         }else{
             // If its terminal state return to beginning of state machine
             this->currentState = 0;
+            nextState(input);
         }
     } else {
         // If found
