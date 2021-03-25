@@ -90,7 +90,7 @@ StateMachine::StateMachine() {
     this->transitionTable.push_back(q11Table);
     this->transitionTable.push_back(q12Table);
 
-    vector<int> terminalTablex{true, false};
+    vector<int> terminalTable{true, false};
     this->terminalTable = terminalTable;
 }
 
