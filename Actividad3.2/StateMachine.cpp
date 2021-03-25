@@ -7,9 +7,11 @@
 StateMachine::StateMachine() {
     this->currentState = 0;
     static const std::map<string, int> q0Table{
-            {"Espacio",     0},
+            {"Espacio",   0},
             {"División",  1},
-            {"Operador", 2},
+            {"Suma", 2},
+            {"Multipliación", 2},
+            {"Potencia", 2},
             {"Letra", 3},
             {"Paréntesis que abre", 4},
             {"Paréntesis que cierra", 5},
@@ -17,25 +19,47 @@ StateMachine::StateMachine() {
             {"Digito",  8}
     };
     static const std::map<string, int> q1Table{
-            {"División",  6}
+            {"División",  6},
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0}
     };
     static const std::map<string, int> q2Table{
             {"Espacio",     0},
-            {"Operador",  0}
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0}
     };
     static const std::map<string, int> q3Table{
             {"Espacio",     0},
             {"Letra",  3},
             {"Underscore", 3},
-            {"Digito",  3}
+            {"Digito",  3},
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0}
     };
     static const std::map<string, int> q4Table{
             {"Espacio",     0},
-            {"Paréntesis que abre",  0}
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0},
     };
     static const std::map<string, int> q5Table{
             {"Espacio",     0},
-            {"Paréntesis que cierra",  0}
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0},
     };
     static const std::map<string, int> q6Table{
             {"Asignación", 6},
@@ -52,28 +76,59 @@ StateMachine::StateMachine() {
     };
     static const std::map<string, int> q7Table{
             {"Digito",  8},
-            {"Espacio", 0}
+            {"Espacio", 0},
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0},
     };
     static const std::map<string, int> q8Table{
             {"Espacio",0},
+            {"División",  0},
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0},
             {"Dígito", 8},
             {"Punto",  9}
     };
     static const std::map<string, int> q9Table{
             {"Espacio",     0},
             {"Dígito", 9},
-            {"Exponencial",  10}
+            {"Exponencial",  10},
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0}
     };
     static const std::map<string, int> q10Table{
             {"Dígito", 12},
-            {"Resta",  11}
+            {"Resta",  11},
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0}
     };
     static const std::map<string, int> q11Table{
-            {"Dígito", 11}
+            {"Dígito", 11},
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0}
     };
     static const std::map<string, int> q12Table{
             {"Espacio",     0},
-            {"Dígito", 12}
+            {"Dígito", 12},
+            {"Suma", 0},
+            {"Multipliación", 0},
+            {"Potencia", 0},
+            {"Paréntesis que abre", 0},
+            {"Paréntesis que cierra", 0}
     };
     this->transitionTable.push_back(q0Table);
     this->transitionTable.push_back(q1Table);
