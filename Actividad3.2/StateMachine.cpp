@@ -69,7 +69,6 @@ StateMachine::StateMachine() {
             {"Resta",  11}
     };
     static const std::map<string, int> q11Table{
-            {"Espacio",  0},
             {"Dígito", 11}
     };
     static const std::map<string, int> q12Table{
