@@ -24,7 +24,8 @@ CharacterData::CharacterData(char characterChar) : characterChar(characterChar) 
                             {'.', "Punto"},
                             {'(', "Parentesís que abre"},
                             {')', "Paréntesis que cierra"},
-                            {'_',"UnderScore"}
+                            {'_',"UnderScore"},
+                            {'\n', "SaltoDeLinea"}
                     }
             };
             this->characterType = characterTable.find(characterChar)->second;

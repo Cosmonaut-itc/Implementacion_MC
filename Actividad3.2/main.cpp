@@ -19,6 +19,7 @@ vector<string> readFile() {
     string word = "";
     while (!archivo.eof()) {
         getline(archivo, texto);
+        texto += '\n';
         words.push_back(texto);
     }
     archivo.close();

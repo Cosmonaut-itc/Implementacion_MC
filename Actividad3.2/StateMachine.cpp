@@ -163,14 +163,14 @@ StateMachine::StateMachine() {
     this->transitionTable.push_back(q11Table);
     this->transitionTable.push_back(q12Table);
 
-    // Is q0 terminal
-    for (int i = 0; i < 12; i++) {
-        if (i == 9 || i == 10) {
-            this->terminalTable.push_back(false);
-        }
-        this->terminalTable.push_back(true);
-    }
 }
+
+
+/*
+7.5e-5
+7a/
+7aaaaa 8
+ */
 
 void StateMachine::nextState(const string &input) {
     std::map<string, int> currentTable = transitionTable[currentState];
@@ -178,18 +178,16 @@ void StateMachine::nextState(const string &input) {
     // Search the input in the current node table
     if (currentTable.find(input) == currentTable.end()) {
         // If not found
-        if (this->terminalTable[currentState]) {
-            //Error
-            // Do error code
-        } else {
-            // If its terminal state return to beginning of state machine
-            this->currentState = 0;
-            nextState(input);
-        }
+        // Return char + char error type
+        // Until the state is 0 accumulate characters and classify as error
     } else {
         // If found
         int nextState = currentTable.find(input)->second;
-        this->currentState = nextState;
+        if (nextState == 0){
+            this->currentState = nextState;
+            // Until the state is 0 accumulate characters and classify as error
+            // Cout set of characters
+        }
     }
 
 }
