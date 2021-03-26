@@ -11,8 +11,11 @@ using namespace std;
 
 class Token {
 private:
-    string tokenString;
-    string tokenType;
+    vector<vector<string>> tokenStringType;
+public:
+    Token();
+    void addToken(string, string);
+    pair getTokenStringType();
 };
 
 
