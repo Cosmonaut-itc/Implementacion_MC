@@ -185,6 +185,42 @@ StateMachine::StateMachine() {
     this->transitionTable.push_back(q11Table);
     this->transitionTable.push_back(q12Table);
 
+    stateNames.resize(12);
+
+    for(int i = 0; i<11; i++){
+        if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6){
+            this->stateNames[i]="Operador";
+        }
+        else if(i == 2){
+            this->stateNames[i]="Letra";
+        }
+        else if(i==5){
+            this->stateNames[i]="Comentario";
+        }
+        else if(i == 7){
+            this->stateNames[i]="Digito";
+        }
+        else if(i == 9 || i == 10){
+            this->stateNames[i]="Error";
+        }
+        else if(i == 8 || i == 11){
+            this->stateNames[i]="Numero Real";
+        }
+    }
+/*
+    this->stateNames.emplace_back("Operador");
+    this->stateNames.emplace_back("Operador");
+    this->stateNames.emplace_back("Letra");
+    this->stateNames.emplace_back("Operador");
+    this->stateNames.emplace_back("Operador");
+    this->stateNames.emplace_back("Comentario");
+    this->stateNames.emplace_back("Operador");
+    this->stateNames.emplace_back("Digito");
+    this->stateNames.emplace_back("Numero Real");
+    this->stateNames.emplace_back("Error");
+    this->stateNames.emplace_back("Error");
+    this->stateNames.emplace_back("Numero Real");
+    */
 }
 
 

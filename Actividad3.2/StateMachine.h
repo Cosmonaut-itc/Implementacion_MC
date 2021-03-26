@@ -14,6 +14,7 @@ using namespace std;
 class StateMachine {
 private:
     vector<std::map<string, int>> transitionTable;
+    vector<string> stateNames;
     int currentState;
 public:
     StateMachine();
