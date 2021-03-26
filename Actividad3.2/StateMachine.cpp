@@ -20,6 +20,7 @@ StateMachine::StateMachine() {
     };
     static const std::map<string, int> q1Table{
             {"División",              6},
+            {"Resta",                 0},
             {"Suma",                  0},
             {"Multipliación",         0},
             {"Potencia",              0},
@@ -29,6 +30,8 @@ StateMachine::StateMachine() {
     static const std::map<string, int> q2Table{
             {"Espacio",               0},
             {"Suma",                  0},
+            {"División",              0},
+            {"Resta",                 0},
             {"Multipliación",         0},
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
@@ -38,6 +41,8 @@ StateMachine::StateMachine() {
             {"Espacio",               0},
             {"Letra",                 3},
             {"Underscore",            3},
+            {"División",              0},
+            {"Resta",                 0},
             {"Digito",                3},
             {"Suma",                  0},
             {"Multipliación",         0},
@@ -48,6 +53,8 @@ StateMachine::StateMachine() {
     static const std::map<string, int> q4Table{
             {"Espacio",               0},
             {"Suma",                  0},
+            {"División",              0},
+            {"Resta",                 0},
             {"Multipliación",         0},
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
@@ -56,6 +63,8 @@ StateMachine::StateMachine() {
     static const std::map<string, int> q5Table{
             {"Espacio",               0},
             {"Suma",                  0},
+            {"División",              0},
+            {"Resta",                 0},
             {"Multipliación",         0},
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
@@ -78,6 +87,8 @@ StateMachine::StateMachine() {
             {"Digito",                8},
             {"Espacio",               0},
             {"Suma",                  0},
+            {"División",              0},
+            {"Resta",                 0},
             {"Multipliación",         0},
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
@@ -86,6 +97,7 @@ StateMachine::StateMachine() {
     static const std::map<string, int> q8Table{
             {"Espacio",               0},
             {"División",              0},
+            {"Resta",                 0},
             {"Suma",                  0},
             {"Multipliación",         0},
             {"Potencia",              0},
@@ -97,6 +109,8 @@ StateMachine::StateMachine() {
     static const std::map<string, int> q9Table{
             {"Espacio",               0},
             {"Dígito",                9},
+            {"División",              0},
+            {"Resta",                 0},
             {"Exponencial",           10},
             {"Suma",                  0},
             {"Multipliación",         0},
@@ -107,6 +121,7 @@ StateMachine::StateMachine() {
     static const std::map<string, int> q10Table{
             {"Dígito",                12},
             {"Resta",                 11},
+            {"División",              0},
             {"Suma",                  0},
             {"Multipliación",         0},
             {"Potencia",              0},
@@ -116,6 +131,8 @@ StateMachine::StateMachine() {
     static const std::map<string, int> q11Table{
             {"Dígito",                11},
             {"Suma",                  0},
+            {"División",              0},
+            {"Resta",                 0},
             {"Multipliación",         0},
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
@@ -125,6 +142,8 @@ StateMachine::StateMachine() {
             {"Espacio",               0},
             {"Dígito",                12},
             {"Suma",                  0},
+            {"División",              0},
+            {"Resta",                 0},
             {"Multipliación",         0},
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
