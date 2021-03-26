@@ -12,10 +12,11 @@
 
 class InputLine {
 private:
-    vector<CharacterData> characters;
     string lineString;
 public:
     InputLine(string lineString);
+
+    vector<CharacterData> characters;
 };
 
 

@@ -9,17 +9,19 @@ StateMachine::StateMachine() {
     static const std::map<string, int> q0Table{
             {"Espacio",               0},
             {"División",              1},
-            {"Suma",                  2},
-            {"Multipliación",         2},
-            {"Potencia",              2},
+            {"Suma",                  0},
+            {"Multipliación",         0},
+            {"Potencia",              0},
             {"Letra",                 3},
-            {"Paréntesis que abre",   4},
-            {"Paréntesis que cierra", 5},
+            {"Paréntesis que abre",   0},
+            {"Paréntesis que cierra", 0},
             {"Resta",                 7},
-            {"Digito",                8},
-            {"SaltoDeLinea",         0}
+            {"Dígito",                8},
+            {"SaltoDeLinea",          0},
+            {"Asignación",            0},
     };
     static const std::map<string, int> q1Table{
+            {"Espacio",               0},
             {"División",              6},
             {"Resta",                 0},
             {"Suma",                  0},
@@ -27,7 +29,7 @@ StateMachine::StateMachine() {
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0}
+            {"SaltoDeLinea",          0}
     };
     static const std::map<string, int> q2Table{
             {"Espacio",               0},
@@ -38,7 +40,7 @@ StateMachine::StateMachine() {
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0}
+            {"SaltoDeLinea",          0}
     };
     static const std::map<string, int> q3Table{
             {"Espacio",               0},
@@ -46,13 +48,14 @@ StateMachine::StateMachine() {
             {"Underscore",            3},
             {"División",              0},
             {"Resta",                 0},
-            {"Digito",                3},
+            {"Dígito",                3},
             {"Suma",                  0},
             {"Multipliación",         0},
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0},
+            {"SaltoDeLinea",          0},
+            {"Asignación",            0},
     };
     static const std::map<string, int> q4Table{
             {"Espacio",               0},
@@ -63,7 +66,7 @@ StateMachine::StateMachine() {
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0},
+            {"SaltoDeLinea",          0},
     };
     static const std::map<string, int> q5Table{
             {"Espacio",               0},
@@ -74,7 +77,7 @@ StateMachine::StateMachine() {
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0},
+            {"SaltoDeLinea",          0},
     };
     static const std::map<string, int> q6Table{
             {"Asignación",            6},
@@ -88,10 +91,12 @@ StateMachine::StateMachine() {
             {"Parentesís que abre",   6},
             {"Paréntesis que cierra", 6},
             {"UnderScore",            6},
-            {"SaltoDeLinea",         0},
+            {"Exponencial",           6},
+            {"Letra",                 6},
+            {"SaltoDeLinea",          0}
     };
     static const std::map<string, int> q7Table{
-            {"Digito",                8},
+            {"Dígito",                8},
             {"Espacio",               0},
             {"Suma",                  0},
             {"División",              0},
@@ -100,7 +105,7 @@ StateMachine::StateMachine() {
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0},
+            {"SaltoDeLinea",          0},
     };
     static const std::map<string, int> q8Table{
             {"Espacio",               0},
@@ -113,7 +118,7 @@ StateMachine::StateMachine() {
             {"Paréntesis que cierra", 0},
             {"Dígito",                8},
             {"Punto",                 9},
-            {"SaltoDeLinea",         0},
+            {"SaltoDeLinea",          0},
     };
     static const std::map<string, int> q9Table{
             {"Espacio",               0},
@@ -126,7 +131,7 @@ StateMachine::StateMachine() {
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0},
+            {"SaltoDeLinea",          0},
     };
     static const std::map<string, int> q10Table{
             {"Dígito",                12},
@@ -137,7 +142,7 @@ StateMachine::StateMachine() {
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0},
+            {"SaltoDeLinea",          0},
     };
     static const std::map<string, int> q11Table{
             {"Dígito",                11},
@@ -148,7 +153,7 @@ StateMachine::StateMachine() {
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0},
+            {"SaltoDeLinea",          0},
     };
     static const std::map<string, int> q12Table{
             {"Espacio",               0},
@@ -160,7 +165,7 @@ StateMachine::StateMachine() {
             {"Potencia",              0},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
-            {"SaltoDeLinea",         0},
+            {"SaltoDeLinea",          0},
     };
     this->transitionTable.push_back(q0Table);
     this->transitionTable.push_back(q1Table);
@@ -180,31 +185,50 @@ StateMachine::StateMachine() {
 
 
 /*
-7.5e-5
-7a/
-7aaaaa 8
+7.5e-5, real
+7a/, 7a error, / division
+7aaaaa 8, 7aaaaaa error, 8 interger
  */
 
-void StateMachine::nextState(const string &input) {
-    std::map<string, int> currentTable = transitionTable[currentState];
 
-    // Search the input in the current node table
+int StateMachine::nextState(string input) {
+    std::map<string, int> currentTable = transitionTable[currentState];
     if (currentTable.find(input) == currentTable.end()) {
         // If not found
-        // Return char + char error type
-        // Until the state is 0 accumulate characters and classify as error
+        return -1;
     } else {
         // If found
-        int nextState = currentTable.find(input)->second;
-        if (nextState == 0){
-            this->currentState = nextState;
-            // Until the state is 0 accumulate characters and classify as error
-            // Cout set of characters
-        }
+        return currentTable.find(input)->second;
     }
+
 
 }
 
 void StateMachine::resetMachine() {
     this->currentState = 0;
+}
+
+void StateMachine::lexer(vector<InputLine> Lines) {
+    for (const auto &line: Lines) {
+        string accumulated = "";
+        for (const auto &characterData: line.characters) {
+            char currentChar = characterData.getCharacterChar();
+            string currentCharType = characterData.getCharacterType();
+            int nextState = this->nextState(currentCharType);
+            //cout << currentState << ", "<< nextState;
+            if (nextState == -1) {
+                cout << "no encontrado: ";
+                nextState = 0;
+            }
+            if (nextState == 0) {
+                cout << accumulated << endl;
+                cout << currentChar << endl;
+                accumulated = "";
+            } else {
+                if (currentCharType != "Espacio" && currentCharType != "")
+                accumulated += currentChar;
+            }
+            this->currentState = nextState;
+        }
+    }
 }

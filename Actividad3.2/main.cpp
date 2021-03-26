@@ -4,6 +4,7 @@
 #include <string>
 #include "Token.h"
 #include "InputLine.h"
+#include "StateMachine.h"
 
 using namespace std;
 
@@ -40,9 +41,13 @@ int main() {
     vector<Token> tokens;
     vector<string> linesString = readFile();
     vector<InputLine> Lines;
+    StateMachine lexerMachine;
+
     for (auto const &line: linesString) {
         InputLine currentLine(line);
         Lines.push_back(currentLine);
     }
+
+    lexerMachine.lexer(Lines);
     return 0;
 }

@@ -9,7 +9,7 @@ CharacterData::CharacterData(char characterChar) : characterChar(characterChar) 
     if (isdigit(characterChar)) {
         this->characterType = "Dígito";
     } else {
-        if (isalpha(characterChar)) {
+        if (isalpha(characterChar) && characterChar != 'e' && characterChar != 'E') {
             this->characterType = "Letra";
         } else {
             static const std::map<char, string> characterTable{
@@ -22,13 +22,23 @@ CharacterData::CharacterData(char characterChar) : characterChar(characterChar) 
                             {'^', "Potencia"},
                             {' ', "Espacio"},
                             {'.', "Punto"},
-                            {'(', "Parentesís que abre"},
+                            {'(', "Paréntesis que abre"},
                             {')', "Paréntesis que cierra"},
                             {'_',"UnderScore"},
-                            {'\n', "SaltoDeLinea"}
+                            {'\n', "SaltoDeLinea"},
+                            {'E',"Exponencial"},
+                            {'e',"Exponencial"}
                     }
             };
             this->characterType = characterTable.find(characterChar)->second;
         }
     }
+}
+
+char CharacterData::getCharacterChar() const {
+    return characterChar;
+}
+
+const string &CharacterData::getCharacterType() const {
+    return characterType;
 }

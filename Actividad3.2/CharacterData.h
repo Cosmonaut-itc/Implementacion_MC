@@ -16,6 +16,10 @@ private:
 public:
     CharacterData(char characterChar);
 
+    char getCharacterChar() const;
+
+    const string &getCharacterType() const;
+
 };
 
 

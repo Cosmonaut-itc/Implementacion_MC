@@ -8,6 +8,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include "InputLine.h"
 
 using namespace std;
 class StateMachine {
@@ -16,7 +17,8 @@ private:
     int currentState;
 public:
     StateMachine();
-    void nextState(const string& input);
+    int nextState(string input);
+    void lexer(vector<InputLine> Lines);
     void resetMachine();
 };
 
