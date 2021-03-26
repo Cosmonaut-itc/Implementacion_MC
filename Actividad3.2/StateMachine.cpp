@@ -265,11 +265,11 @@ void StateMachine::lexer(vector<InputLine> Lines) {
                         cout << accumulated << " Estado: " << "Error" << endl;
                     }
                     else {
-                        cout << accumulated << " Estado: " << currentState << endl;
+                        cout << accumulated << " Estado: " << /*stateNames[currentState]*/currentState << endl;
                     }
                 }
                 if (currentCharType != "Espacio" && currentCharType != "SaltoDeLinea") {
-                    cout << currentChar << " Estado: " << currentState << endl;
+                    cout << currentChar << " Estado: " << currentCharType << endl;
                 }
                 accumulated = "";
             } else {
