@@ -187,23 +187,23 @@ StateMachine::StateMachine() {
 
     stateNames.resize(12);
 
-    for(int i = 0; i<11; i++){
-        if(i == 0 || i == 1 || i == 3 || i == 4 || i == 6){
+    for(int i = 1; i<12; i++){
+        if(i == 1 || i == 2 || i == 4 || i == 5 || i == 7){
             this->stateNames[i]="Operador";
         }
-        else if(i == 2){
+        else if(i == 3){
             this->stateNames[i]="Letra";
         }
-        else if(i==5){
+        else if(i==6){
             this->stateNames[i]="Comentario";
         }
-        else if(i == 7){
+        else if(i == 8){
             this->stateNames[i]="Digito";
         }
-        else if(i == 9 || i == 10){
+        else if(i == 10){
             this->stateNames[i]="Error";
         }
-        else if(i == 8 || i == 11){
+        else if(i == 9 || i == 11 || i == 12){
             this->stateNames[i]="Numero Real";
         }
     }
@@ -256,13 +256,17 @@ void StateMachine::lexer(vector<InputLine> Lines) {
             string currentCharType = characterData.getCharacterType();
             int nextState = this->nextState(currentCharType);
             //cout << currentState << ", "<< nextState;
-            if (nextState == -1) {
-                cout << "no encontrado: ";
+            if (nextState == -1 && currentCharType == "SaltoDeLinea") {
                 nextState = 0;
             }
             if (nextState == 0) {
                 if (accumulated != "") {
-                    cout << accumulated << " Estado: " << currentState << endl;
+                    if(currentState == -1){
+                        cout << accumulated << " Estado: " << "Error" << endl;
+                    }
+                    else {
+                        cout << accumulated << " Estado: " << currentState << endl;
+                    }
                 }
                 if (currentCharType != "Espacio" && currentCharType != "SaltoDeLinea") {
                     cout << currentChar << " Estado: " << currentState << endl;
