@@ -6,6 +6,7 @@
 
 StateMachine::StateMachine() {
     this->currentState = 0;
+    // Estado Incial
     static const std::map<string, int> q0Table{
             {"Espacio",               0},
             {"División",              1},
@@ -13,6 +14,7 @@ StateMachine::StateMachine() {
             {"Multipliación",         0},
             {"Potencia",              0},
             {"Letra",                 3},
+            {"Exponencial",           3},
             {"Paréntesis que abre",   0},
             {"Paréntesis que cierra", 0},
             {"Resta",                 7},
@@ -20,6 +22,7 @@ StateMachine::StateMachine() {
             {"SaltoDeLinea",          0},
             {"Asignación",            0},
     };
+
     static const std::map<string, int> q1Table{
             {"Espacio",               0},
             {"División",              6},
@@ -45,6 +48,7 @@ StateMachine::StateMachine() {
     static const std::map<string, int> q3Table{
             {"Espacio",               0},
             {"Letra",                 3},
+            {"Exponencial",           3},
             {"Underscore",            3},
             {"División",              0},
             {"Resta",                 0},
@@ -221,12 +225,17 @@ void StateMachine::lexer(vector<InputLine> Lines) {
                 nextState = 0;
             }
             if (nextState == 0) {
-                cout << accumulated << endl;
-                cout << currentChar << endl;
+                if (accumulated != "") {
+                    cout << accumulated << " Estado: " << currentState << endl;
+                }
+                if (currentCharType != "Espacio" && currentCharType != "SaltoDeLinea") {
+                    cout << currentChar << " Estado: " << currentState << endl;
+                }
                 accumulated = "";
             } else {
-                if (currentCharType != "Espacio" && currentCharType != "")
-                accumulated += currentChar;
+                if (currentCharType != "SaltoDeLinea") {
+                    accumulated += currentChar;
+                }
             }
             this->currentState = nextState;
         }
