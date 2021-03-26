@@ -185,9 +185,9 @@ StateMachine::StateMachine() {
     this->transitionTable.push_back(q11Table);
     this->transitionTable.push_back(q12Table);
 
-    stateNames.resize(12);
+    stateNames.resize(13);
 
-    for(int i = 1; i<12; i++){
+    for(int i = 1; i<13; i++){
         if(i == 1 || i == 2 || i == 4 || i == 5 || i == 7){
             this->stateNames[i]="Operador";
         }
@@ -207,28 +207,8 @@ StateMachine::StateMachine() {
             this->stateNames[i]="Numero Real";
         }
     }
-/*
-    this->stateNames.emplace_back("Operador");
-    this->stateNames.emplace_back("Operador");
-    this->stateNames.emplace_back("Letra");
-    this->stateNames.emplace_back("Operador");
-    this->stateNames.emplace_back("Operador");
-    this->stateNames.emplace_back("Comentario");
-    this->stateNames.emplace_back("Operador");
-    this->stateNames.emplace_back("Digito");
-    this->stateNames.emplace_back("Numero Real");
-    this->stateNames.emplace_back("Error");
-    this->stateNames.emplace_back("Error");
-    this->stateNames.emplace_back("Numero Real");
-    */
 }
 
-
-/*
-7.5e-5, real
-7a/, 7a error, / division
-7aaaaa 8, 7aaaaaa error, 8 interger
- */
 
 
 int StateMachine::nextState(string input) {
@@ -265,7 +245,7 @@ void StateMachine::lexer(vector<InputLine> Lines) {
                         cout << accumulated << " Estado: " << "Error" << endl;
                     }
                     else {
-                        cout << accumulated << " Estado: " << /*stateNames[currentState]*/currentState << endl;
+                        cout << accumulated << " Estado: " << stateNames[currentState]/*currentState*/ << endl;
                     }
                 }
                 if (currentCharType != "Espacio" && currentCharType != "SaltoDeLinea") {
