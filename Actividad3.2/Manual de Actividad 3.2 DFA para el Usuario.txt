@@ -1,6 +1,23 @@
-Para poder correr el programa, es necesario tener instaladas todas las librerias de c++ y tener un
-IDLE que pueda correr el main con las librerias ya incluidas en la carpeta actual del proyecto, de 
-igual manera es necesario contar con excel instalado. 
+# Manual de Avtividad 3.2 
+## Requerimientos:
+-Lenguajes:
+  - C++
+-Archivos:
+  - main.cpp
+  - CharacterData.cpp
+  - CharacterData.h
+  - InputLine.cpp
+  - InputLine.h
+  - StateMachine.cpp
+  - StateMachine.h
+  - Token.cpp
+  - Toke.h
+-Archivos Extras:
+  - espresiones.txt
+-Programas:
+  - Excel
+ 
+### Proceso
 Para correr el programa es necesario ajustar el path o la dirección en las funciones de readFile() 
 para el archivo de texto que se vaya leer el cual por defecto es archivo.txt, el cual se puede modificar
 al gusto para poderlo leer y utilizar el programa(tiene que estar en el directorio del proyecto mismo) 
