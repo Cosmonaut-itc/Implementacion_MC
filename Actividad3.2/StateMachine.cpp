@@ -13,7 +13,7 @@ StateMachine::StateMachine() {
             {"Espacio",               0},
             {"Division",              1},
             {"Suma",                  0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Letra",                 3},
             {"Exponencial",           3},
@@ -23,6 +23,7 @@ StateMachine::StateMachine() {
             {"Dígito",                8},
             {"SaltoDeLinea",          0},
             {"Asignacion",            0},
+            {"Error (character not found)", 0}
     };
 
     static const std::map<string, int> q1Table{
@@ -30,22 +31,24 @@ StateMachine::StateMachine() {
             {"Division",              6},
             {"Resta",                 0},
             {"Suma",                  0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
-            {"SaltoDeLinea",          0}
+            {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q2Table{
             {"Espacio",               0},
             {"Suma",                  0},
             {"Division",              0},
             {"Resta",                 0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
-            {"SaltoDeLinea",          0}
+            {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q3Table{
             {"Espacio",               0},
@@ -56,40 +59,43 @@ StateMachine::StateMachine() {
             {"Resta",                 0},
             {"Dígito",                3},
             {"Suma",                  0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
             {"SaltoDeLinea",          0},
             {"Asignacion",            0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q4Table{
             {"Espacio",               0},
             {"Suma",                  0},
             {"Division",              0},
             {"Resta",                 0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
             {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q5Table{
             {"Espacio",               0},
             {"Suma",                  0},
             {"Division",              0},
             {"Resta",                 0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
             {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q6Table{
             {"Asignacion",            6},
             {"Suma",                  6},
             {"Resta",                 6},
-            {"Multipliacion",         6},
+            {"Multiplicacion",         6},
             {"Division",              6},
             {"Potencia",              6},
             {"Espacio",               6},
@@ -99,7 +105,8 @@ StateMachine::StateMachine() {
             {"UnderScore",            6},
             {"Exponencial",           6},
             {"Letra",                 6},
-            {"SaltoDeLinea",          0}
+            {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q7Table{
             {"Dígito",                8},
@@ -107,24 +114,26 @@ StateMachine::StateMachine() {
             {"Suma",                  0},
             {"Division",              0},
             {"Resta",                 0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
             {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q8Table{
             {"Espacio",               0},
             {"Division",              0},
             {"Resta",                 0},
             {"Suma",                  0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
             {"Dígito",                8},
             {"Punto",                 9},
             {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q9Table{
             {"Espacio",               0},
@@ -133,33 +142,36 @@ StateMachine::StateMachine() {
             {"Resta",                 0},
             {"Exponencial",           10},
             {"Suma",                  0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
             {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q10Table{
             {"Dígito",                12},
             {"Resta",                 11},
             {"Division",              0},
             {"Suma",                  0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
             {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q11Table{
             {"Dígito",                11},
             {"Suma",                  0},
             {"Division",              0},
             {"Resta",                 0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
             {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     static const std::map<string, int> q12Table{
             {"Espacio",               0},
@@ -167,11 +179,12 @@ StateMachine::StateMachine() {
             {"Suma",                  0},
             {"Division",              0},
             {"Resta",                 0},
-            {"Multipliacion",         0},
+            {"Multiplicacion",         0},
             {"Potencia",              0},
             {"Parentesis que abre",   0},
             {"Parentesis que cierra", 0},
             {"SaltoDeLinea",          0},
+            {"Error (character not found)", 0}
     };
     this->transitionTable.push_back(q0Table);
     this->transitionTable.push_back(q1Table);
@@ -234,10 +247,26 @@ Token StateMachine::lexer(vector<InputLine> Lines) {
     Token token;
     for (const auto &line: Lines) {
         string accumulated = "";
+        int cont = 0;
         for (const auto &characterData: line.characters) {
             char currentChar = characterData.getCharacterChar();
             string currentCharType = characterData.getCharacterType();
             int nextState = this->nextState(currentCharType);
+            if(currentCharType == "Division"){
+                cont++;
+            }
+            if (currentCharType == "Espacio"){
+                if(cont == 2 ){
+                    nextState = 6;
+                    if(currentCharType == "SaltoDeLinea"){
+                        nextState = 0;
+                        cont = 0;
+                    }
+                }
+                else {
+                    nextState = 0;
+                }
+            }
             //cout << currentState << ", "<< nextState;
             if (nextState == -1 && currentCharType == "SaltoDeLinea") {
                 nextState = 0;
