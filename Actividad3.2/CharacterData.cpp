@@ -19,7 +19,7 @@ CharacterData::CharacterData(char characterChar) : characterChar(characterChar) 
                             {'=', "Asignacion"},
                             {'+', "Suma"},
                             {'-', "Resta"},
-                            {'*', "Multipliacion"},
+                            {'*', "Multiplicacion"},
                             {'/', "Division"},
                             {'^', "Potencia"},
                             {' ', "Espacio"},
