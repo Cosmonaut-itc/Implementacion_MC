@@ -1,3 +1,9 @@
+//
+// Created by Diego Ortiz on 3/22/21.
+// Created by David Velázquez on 3/22/21.
+// Created by Felix De Haro on 3/22/21.
+//
+
 #include <iostream>
 #include <vector>
 #include <fstream>

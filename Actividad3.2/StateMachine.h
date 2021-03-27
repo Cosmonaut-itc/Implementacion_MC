@@ -1,7 +1,8 @@
 //
-// Created by Diego Ortiz on 3/25/21.
+// Created by Diego Ortiz on 3/22/21.
+// Created by David Velázquez on 3/22/21.
+// Created by Felix De Haro on 3/22/21.
 //
-
 #ifndef ACTIVIDAD3_2_STATEMACHINE_H
 #define ACTIVIDAD3_2_STATEMACHINE_H
 
