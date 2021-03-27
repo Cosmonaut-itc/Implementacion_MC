@@ -267,7 +267,7 @@ Token StateMachine::lexer(vector<InputLine> Lines) {
                     nextState = 0;
                 }
             }
-            //cout << currentState << ", "<< nextState;
+
             if (nextState == -1 && currentCharType == "SaltoDeLinea") {
                 nextState = 0;
             }
