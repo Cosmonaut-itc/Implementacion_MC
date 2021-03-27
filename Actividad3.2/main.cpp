@@ -10,7 +10,7 @@ using namespace std;
 
 vector<string> readFile() {
     ifstream archivo;
-    archivo.open("archivo.txt", ios::in);
+    archivo.open(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\archivo.txt)", ios::in);
     if (archivo.fail()) {
         cout << "El archivo no se pudo abrir" << endl;
         exit(1);
@@ -27,18 +27,17 @@ vector<string> readFile() {
     return words;
 }
 
-void exportFile(vector<Token> tokens) {
-    fstream CreateFile("DFA.csv", ios::out);
-    CreateFile << "Token,Tipo" << endl;
-    ofstream MyFile;
-    MyFile.open("DFA.csv");
-    for (int i = 0; i < tokens.size(); i++) {
-        //MyFile<<currentToken.getTokenString() <<  "," << currentToken.getTokenType() << endl;
+void exportFile(Token tokens) {
+    fstream CreateFile(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\DFA.csv)", ios::out);
+    ofstream fileToken;
+    fileToken.open(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\DFA.csv)");
+    fileToken << "Token , Type"<<endl;
+    for (int i = 0; i < tokens.getSize(); i++) {
+        fileToken<<tokens.getTokenString(i) <<  "," << tokens.getTokenType(i) << endl;
     }
 }
 
 int main() {
-    vector<Token> tokens;
     vector<string> linesString = readFile();
     vector<InputLine> Lines;
     StateMachine lexerMachine;
@@ -47,7 +46,8 @@ int main() {
         InputLine currentLine(line);
         Lines.push_back(currentLine);
     }
-
-    lexerMachine.lexer(Lines);
+    Token tokens = lexerMachine.lexer(Lines);
+    tokens.tokenPrint();
+    exportFile(tokens);
     return 0;
 }

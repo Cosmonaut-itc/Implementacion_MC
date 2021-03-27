@@ -9,6 +9,7 @@
 #include <map>
 #include <vector>
 #include "InputLine.h"
+#include "token.h"
 
 using namespace std;
 class StateMachine {
@@ -19,7 +20,7 @@ private:
 public:
     StateMachine();
     int nextState(string input);
-    void lexer(vector<InputLine> Lines);
+    Token lexer(vector<InputLine> Lines);
     void resetMachine();
 };
 

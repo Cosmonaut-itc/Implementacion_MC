@@ -228,7 +228,8 @@ void StateMachine::resetMachine() {
     this->currentState = 0;
 }
 
-void StateMachine::lexer(vector<InputLine> Lines) {
+Token StateMachine::lexer(vector<InputLine> Lines) {
+    Token token;
     for (const auto &line: Lines) {
         string accumulated = "";
         for (const auto &characterData: line.characters) {
@@ -242,14 +243,16 @@ void StateMachine::lexer(vector<InputLine> Lines) {
             if (nextState == 0) {
                 if (accumulated != "") {
                     if(currentState == -1){
-                        cout << accumulated << " Estado: " << "Error" << endl;
+                        token.addToken(accumulated, "Error");
                     }
                     else {
-                        cout << accumulated << " Estado: " << stateNames[currentState]/*currentState*/ << endl;
+                        token.addToken(accumulated, stateNames[currentState]);
                     }
                 }
                 if (currentCharType != "Espacio" && currentCharType != "SaltoDeLinea") {
-                    cout << currentChar << " Estado: " << currentCharType << endl;
+                    string current_char = "";
+                    current_char += currentChar;
+                    token.addToken(current_char, currentCharType);
                 }
                 accumulated = "";
             } else {
@@ -260,4 +263,5 @@ void StateMachine::lexer(vector<InputLine> Lines) {
             this->currentState = nextState;
         }
     }
+    return token;
 }

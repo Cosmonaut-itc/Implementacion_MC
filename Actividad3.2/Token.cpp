@@ -1,18 +1,38 @@
 //
 // Created by Diego Ortiz on 3/22/21.
 //
-
-#include <vector>
 #include "Token.h"
 
-Token(){
-    tokenStringType = [];
+Token::Token(){
+    this->tokenStringType[0];
+    this->size = 0;
 }
 
-void addToken(vector<string> tokenstrTp) {
-    tokenStringType.pushback(tokenstrTp);
+void Token::addToken(string tokenString, string tokenType) {
+    vector<string> tokenStrTp;
+    tokenStrTp.push_back(tokenString);
+    tokenStrTp.push_back(tokenType);
+    this->tokenStringType.push_back(tokenStrTp);
+    this->size++;
 }
 
-vector<vector<string>> getTokenStringType() {
-    return tokenStringType;
+string Token::getTokenString(int row) {
+    return this->tokenStringType[row][0];
+}
+
+string Token::getTokenType(int row) {
+    return this->tokenStringType[row][1];
+}
+
+void Token::tokenPrint(){
+    for (int i = 0; i < this->size; i++){
+        for (int j = 0; j < 2; j++){
+            cout << this->tokenStringType[i][j] << ",";
+        }
+        cout<<endl;
+    }
+}
+
+int Token::getSize() {
+    return this->size;
 }
