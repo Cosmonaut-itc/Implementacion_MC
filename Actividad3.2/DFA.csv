@@ -1,30 +1,39 @@
 Token , Type
-(,Paréntesis que abre
-a,Letra
+8,Entero
+*,Multiplicacion
+9,Entero
 +,Suma
-12,Digito
-*,Multipliación
-(,Paréntesis que abre
-57.4e12,Numero Real
-),Paréntesis que cierra
-),Paréntesis que cierra
-b,Letra
-=,Asignación
-7,Digito
+5,Entero
+<,Error (character not found)
+//hola como estas,Comentario
+(,Parentesis que abre
+a,Variable (identificador)
 +,Suma
-*,Multipliación
-77,Digito
-*,Multipliación
-8,Digito
-(,Paréntesis que abre
-a,Letra
+12,Entero
+*,Multiplicacion
+(,Parentesis que abre
+57.4e12,Flotantes (Reales)
+),Parentesis que cierra
+),Parentesis que cierra
+b,Variable (identificador)
+=,Asignacion
+7,Entero
 +,Suma
-12,Digito
-*,Multipliación
-(,Paréntesis que abre
-57.4e12,Numero Real
-),Paréntesis que cierra
-),Paréntesis que cierra
+*,Multiplicacion
+77,Entero
+*,Multiplicacion
+8,Entero
+(,Parentesis que abre
+a,Variable (identificador)
++,Suma
+12,Entero
+*,Multiplicacion
+(,Parentesis que abre
+57.4e12,Flotantes (Reales)
+),Parentesis que cierra
+),Parentesis que cierra
 8aaa,Error
-8311,Digito
-8.3e-844,Numero Real
+8311,Entero
+8.3e-844,Flotantes (Reales)
+<,Error (character not found)
+?,Error (character not found)
