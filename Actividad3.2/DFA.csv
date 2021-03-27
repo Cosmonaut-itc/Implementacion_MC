@@ -1,0 +1,30 @@
+Token , Type
+(,Paréntesis que abre
+a,Letra
++,Suma
+12,Digito
+*,Multipliación
+(,Paréntesis que abre
+57.4e12,Numero Real
+),Paréntesis que cierra
+),Paréntesis que cierra
+b,Letra
+=,Asignación
+7,Digito
++,Suma
+*,Multipliación
+77,Digito
+*,Multipliación
+8,Digito
+(,Paréntesis que abre
+a,Letra
++,Suma
+12,Digito
+*,Multipliación
+(,Paréntesis que abre
+57.4e12,Numero Real
+),Paréntesis que cierra
+),Paréntesis que cierra
+8aaa,Error
+8311,Digito
+8.3e-844,Numero Real
