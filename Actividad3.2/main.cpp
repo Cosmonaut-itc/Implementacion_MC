@@ -16,7 +16,7 @@ using namespace std;
 
 vector<string> readFile() {
     ifstream archivo;
-    archivo.open(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\archivo.txt)", ios::in);
+    archivo.open(R"(Path/expresiones.txt)", ios::in);
     if (archivo.fail()) {
         cout << "El archivo no se pudo abrir" << endl;
         exit(1);
@@ -34,9 +34,9 @@ vector<string> readFile() {
 }
 
 void exportFile(Token tokens) {
-    fstream CreateFile(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\DFA.csv)", ios::out);
+    fstream CreateFile(R"(Path/DFA.csv)", ios::out);
     ofstream fileToken;
-    fileToken.open(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\DFA.csv)");
+    fileToken.open(R"(Path/DFA.csv)");
     fileToken << "Token , Type"<<endl;
     for (int i = 0; i < tokens.getSize(); i++) {
         fileToken<<tokens.getTokenString(i) <<  "," << tokens.getTokenType(i) << endl;
