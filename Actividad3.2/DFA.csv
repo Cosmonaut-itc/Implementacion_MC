@@ -1,4 +1,5 @@
 Token , Type
+<<<<<<< HEAD
 <,Error
 ?,Error
 // hola,Comentario
@@ -19,3 +20,19 @@ a,Variable (identificador)
 8aaa,Error
 8311,Entero
 8.3e-844,Flotantes (Reales)
+=======
+a,Variable (identificador)
+=,Asignacion
+=,Asignacion
+7a,Error
+2.5,Flotantes (Reales)
+// hola 2 1.5 +,Comentario
+7,Entero
+b,Variable (identificador)
+=,Asignacion
+1,Entero
+^,Potencia
+3,Entero
+>,Error (character not found)
+a7,Variable (identificador)
+>>>>>>> 1ac78421cbbf22e910524a29047c2a0639f7e290
