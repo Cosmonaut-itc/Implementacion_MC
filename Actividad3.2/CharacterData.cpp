@@ -16,24 +16,30 @@ CharacterData::CharacterData(char characterChar) : characterChar(characterChar) 
         } else {
             static const std::map<char, string> characterTable{
                     {
-                            {'=', "Asignación"},
+                            {'=', "Asignacion"},
                             {'+', "Suma"},
                             {'-', "Resta"},
-                            {'*', "Multipliación"},
-                            {'/', "División"},
+                            {'*', "Multipliacion"},
+                            {'/', "Division"},
                             {'^', "Potencia"},
                             {' ', "Espacio"},
                             {'.', "Punto"},
-                            {'(', "Paréntesis que abre"},
-                            {')', "Paréntesis que cierra"},
+                            {'(', "Parentesis que abre"},
+                            {')', "Parentesis que cierra"},
                             {'_',"UnderScore"},
                             {'\n', "SaltoDeLinea"},
                             {'E',"Exponencial"},
                             {'e',"Exponencial"}
                     }
             };
-            this->characterType = characterTable.find(characterChar)->second;
+            if (characterTable.find(characterChar) == characterTable.end()) {
+                this->characterType = "Error (character not found)";
+            } else {
+                this->characterType = characterTable.find(characterChar)->second;
+            }
+
         }
+
     }
 }
 

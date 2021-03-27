@@ -194,19 +194,19 @@ StateMachine::StateMachine() {
             this->stateNames[i]="Operador";
         }
         else if(i == 3){
-            this->stateNames[i]="Letra";
+            this->stateNames[i]="Variable (identificador)";
         }
         else if(i==6){
             this->stateNames[i]="Comentario";
         }
         else if(i == 8){
-            this->stateNames[i]="Digito";
+            this->stateNames[i]="Entero";
         }
         else if(i == 10){
             this->stateNames[i]="Error";
         }
         else if(i == 9 || i == 11 || i == 12){
-            this->stateNames[i]="Numero Real";
+            this->stateNames[i]="Flotantes (Reales)";
         }
     }
 }
