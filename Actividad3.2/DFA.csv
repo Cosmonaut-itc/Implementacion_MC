@@ -1,39 +1,15 @@
 Token , Type
-8,Entero
-*,Multiplicacion
-9,Entero
-+,Suma
-5,Entero
-<,Error (character not found)
-//hola como estas,Comentario
-(,Parentesis que abre
 a,Variable (identificador)
-+,Suma
-12,Entero
-*,Multiplicacion
-(,Parentesis que abre
-57.4e12,Flotantes (Reales)
-),Parentesis que cierra
-),Parentesis que cierra
+=,Asignacion
+=,Asignacion
+7a,Error
+2.5,Flotantes (Reales)
+// hola 2 1.5 +,Comentario
+7,Entero
 b,Variable (identificador)
 =,Asignacion
-7,Entero
-+,Suma
-*,Multiplicacion
-77,Entero
-*,Multiplicacion
-8,Entero
-(,Parentesis que abre
-a,Variable (identificador)
-+,Suma
-12,Entero
-*,Multiplicacion
-(,Parentesis que abre
-57.4e12,Flotantes (Reales)
-),Parentesis que cierra
-),Parentesis que cierra
-8aaa,Error
-8311,Entero
-8.3e-844,Flotantes (Reales)
-<,Error (character not found)
-?,Error (character not found)
+1,Entero
+^,Potencia
+3,Entero
+>,Error (character not found)
+a7,Variable (identificador)

@@ -247,10 +247,26 @@ Token StateMachine::lexer(vector<InputLine> Lines) {
     Token token;
     for (const auto &line: Lines) {
         string accumulated = "";
+        int cont = 0;
         for (const auto &characterData: line.characters) {
             char currentChar = characterData.getCharacterChar();
             string currentCharType = characterData.getCharacterType();
             int nextState = this->nextState(currentCharType);
+            if(currentCharType == "Division"){
+                cont++;
+            }
+            if (currentCharType == "Espacio"){
+                if(cont == 2 ){
+                    nextState = 6;
+                    if(currentCharType == "SaltoDeLinea"){
+                        nextState = 0;
+                        cont = 0;
+                    }
+                }
+                else {
+                    nextState = 0;
+                }
+            }
             //cout << currentState << ", "<< nextState;
             if (nextState == -1 && currentCharType == "SaltoDeLinea") {
                 nextState = 0;
