@@ -20,9 +20,13 @@
 ### Proceso
 Para poder ejecutar el programa de manera correcta, se necesita cambiar el path del archivo "expresiones.txt" encontrado en "main.cpp".
 El archivo "expresiones.txt" tiene que contener las expresiones que se deseen evaluar, no importa el orden ni la posicion. Asi mismo, tambien
-tiene que cambiar el path del archivo de salida, igualmente encontrado en "main.cpp". El archivo de salida en cuestion es un .csv que continen
+tiene que cambiar el path del archivo de salida, igualmente encontrado en "main.cpp". El archivo de salida en cuestion es un .csv llamado DFA que continen
 las expresiones evaluadas y separadas en la columna "Tokens" y "Type". En "Tokens" estan las expresiones evaluadas separadas por caracteres, y en
 la columa "Type" tiene el tipo de cada uno de los "Tokens".
+
+En el archivo "Actividad_3_2_MaquinaDeEstados.docx" se encuentra el modelo de la maquina de estados, y en el archivo "Tabla_alfabeto_automata.xlsx" 
+se encuentra la tabla de estados en excel.
+
 
 Link del video: 
 
