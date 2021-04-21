@@ -36,7 +36,7 @@ vector<string> readFile() {
 
 // Convierte la información del Token a HTML+CSS
 string createHTML(string token, string type){
-    static const std::map<string, string> typeHTML{
+    std::map<string, string> typeHTML{
             {"Números", "<span style = \"color: #ffe119;\">" + token + "</span>"},
             {"Lógicos", "<span style = \"color: #4363d8;\">" + token + "</span>"},
             {"Símbolos", "<span style = \"color: #469990;\">" + token + "</span>"},
