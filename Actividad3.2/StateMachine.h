@@ -10,7 +10,7 @@
 #include <map>
 #include <vector>
 #include "InputLine.h"
-#include "token.h"
+#include "Token.h"
 
 using namespace std;
 class StateMachine {

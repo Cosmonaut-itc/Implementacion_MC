@@ -16,7 +16,7 @@ using namespace std;
 
 vector<string> readFile() {
     ifstream archivo;
-    archivo.open("expresiones.txt", ios::in);
+    archivo.open(R"(C:\Users\Felix\Desktop\Tec\4to Semestre\Implementacion\Scheme\Repo\Actividad3.2\expresiones.txt)", ios::in);
     if (archivo.fail()) {
         cout << "El archivo no se pudo abrir" << endl;
         exit(1);
@@ -33,15 +33,33 @@ vector<string> readFile() {
     return words;
 }
 
-void exportFile(Token tokens) {
-    fstream CreateFile("DFA.csv", ios::out);
+// Creates an HTML file to show the output
+void createFile(Token tokens) {
+    fstream CreateFile(R"(C:\Users\Felix\Desktop\Tec\4to Semestre\Implementacion\Scheme\Repo\Actividad3.2\DFA.html)", ios::out);
     ofstream fileToken;
-    fileToken.open("DFA.csv");
-    fileToken << "Token , Type"<<endl;
+    fileToken.open(R"(C:\Users\Felix\Desktop\Tec\4to Semestre\Implementacion\Scheme\Repo\Actividad3.2\DFA.html)");
+    fileToken << "<!DOCTYPE HTML>\n"
+                 "<html lang=\"en\">\n"
+                 "  <head>\n"
+                 "  <meta charset=\"utf-8\">\n"
+                 "  <meta name=\"description\" content=\"A page for exploring basic HTML documents\">\n"
+                 "  <title>Basic HTML document</title>\n"
+                 "  </head>\n"
+                 "  <body>\n"<<endl;
     for (int i = 0; i < tokens.getSize(); i++) {
         fileToken<<tokens.getTokenString(i) <<  "," << tokens.getTokenType(i) << endl;
     }
+    fileToken <<  "    <h1>Page content</h1>\n"
+                  "  </body>\n"
+                  "</html>"<<endl;
 }
+
+string createHTML(string token, string type){
+
+    return "<html>";
+}
+
+
 
 int main() {
     vector<string> linesString = readFile();
@@ -54,6 +72,6 @@ int main() {
     }
     Token tokens = lexerMachine.lexer(Lines);
     tokens.tokenPrint();
-    exportFile(tokens);
+    createFile(tokens);
     return 0;
 }
