@@ -11,7 +11,8 @@ CharacterData::CharacterData(char characterChar) : characterChar(characterChar) 
     if (isdigit(characterChar)) {
         this->characterType = "Dígito";
     } else {
-        if (isalpha(characterChar) && characterChar != 'e' && characterChar != 'E') {
+        if (isalpha(characterChar) && characterChar != 'e' && characterChar != 'E' && characterChar != 'f' &&
+            characterChar != 't') {
             this->characterType = "Letra";
         } else {
             static const std::map<char, string> characterTable{
@@ -26,10 +27,15 @@ CharacterData::CharacterData(char characterChar) : characterChar(characterChar) 
                             {'.', "Punto"},
                             {'(', "Parentesis que abre"},
                             {')', "Parentesis que cierra"},
-                            {'_',"UnderScore"},
+                            {'_', "UnderScore"},
                             {'\n', "SaltoDeLinea"},
-                            {'E',"Exponencial"},
-                            {'e',"Exponencial"}
+                            {'E', "Exponencial"},
+                            {'e', "Exponencial"},
+                            {';', "PuntoYComa"},
+                            {'f', "False"},
+                            {'t', "True"},
+                            {'#', "Hashtag"},
+                            {'\'', "Quote"}
                     }
             };
             if (characterTable.find(characterChar) == characterTable.end()) {

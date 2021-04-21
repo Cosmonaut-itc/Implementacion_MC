@@ -17,6 +17,7 @@ class StateMachine {
 private:
     vector<std::map<string, int>> transitionTable;
     vector<string> stateNames;
+    std::map<string, int> reservedWords;
     Token tokens;
     int currentState;
     char currentChar;
