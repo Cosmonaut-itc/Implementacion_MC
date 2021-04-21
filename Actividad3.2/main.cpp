@@ -17,7 +17,7 @@ using namespace std;
 
 vector<string> readFile() {
     ifstream archivo;
-    archivo.open(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\expresiones.txt)", ios::in);
+    archivo.open("expresiones.txt", ios::in);
     if (archivo.fail()) {
         cout << "El archivo no se pudo abrir" << endl;
         exit(1);

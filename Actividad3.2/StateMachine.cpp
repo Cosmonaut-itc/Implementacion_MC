@@ -297,15 +297,18 @@ StateMachine::StateMachine() {
     this->transitionTable.push_back(q5Table);
     stateNames.emplace_back("Números");
     this->transitionTable.push_back(q6Table);
-    stateNames.emplace_back("Exponential state (non terminal)");
+    // Exponential state (non terminal)
+    stateNames.emplace_back("Errores");
     this->transitionTable.push_back(q7Table);
-    stateNames.emplace_back("Float with negative exponential state (non terminal)");
+    // Float with negative exponential state (non terminal)
+    stateNames.emplace_back("Errores");
     this->transitionTable.push_back(q8Table);
     stateNames.emplace_back("Números");
     this->transitionTable.push_back(q9Table);
     stateNames.emplace_back("Errores");
     this->transitionTable.push_back(q10Table);
-    stateNames.emplace_back("Logic State (non terminal)");
+    // Logic State (non terminal)
+    stateNames.emplace_back("Errores");
     this->transitionTable.push_back(q11Table);
     stateNames.emplace_back("Lógicos");
     this->transitionTable.push_back(q12Table);
