@@ -29,7 +29,7 @@ string Token::getTokenType(int row) {
 void Token::tokenPrint(){
     for (int i = 0; i < this->size; i++){
         for (int j = 0; j < 2; j++){
-            cout << this->tokenStringType[i][j] << ",";
+            cout << this->tokenStringType[i][j] << ", ";
         }
         cout<<endl;
     }

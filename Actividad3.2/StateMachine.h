@@ -17,12 +17,15 @@ class StateMachine {
 private:
     vector<std::map<string, int>> transitionTable;
     vector<string> stateNames;
+    Token tokens;
     int currentState;
+    char currentChar;
+    string currentCharType;
 public:
     StateMachine();
-    int nextState(string input);
-    Token lexer(vector<InputLine> Lines);
-    void resetMachine();
+    int nextState(const string& input);
+    Token lexer(const vector<InputLine>& Lines);
+    void addCurrentToTokens();
 };
 
 
