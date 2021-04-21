@@ -8,6 +8,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <map>
 #include "Token.h"
 #include "InputLine.h"
 #include "StateMachine.h"
@@ -16,7 +17,7 @@ using namespace std;
 
 vector<string> readFile() {
     ifstream archivo;
-    archivo.open(R"(C:\Users\Felix\Desktop\Tec\4to Semestre\Implementacion\Scheme\Repo\Actividad3.2\expresiones.txt)", ios::in);
+    archivo.open(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\expresiones.txt)", ios::in);
     if (archivo.fail()) {
         cout << "El archivo no se pudo abrir" << endl;
         exit(1);
@@ -33,11 +34,29 @@ vector<string> readFile() {
     return words;
 }
 
+// Convierte la información del Token a HTML+CSS
+string createHTML(string token, string type){
+    static const std::map<string, string> typeHTML{
+            {"Números", "<span style = \"color: #ffe119;\">" + token + "</span>"},
+            {"Lógicos", "<span style = \"color: #4363d8;\">" + token + "</span>"},
+            {"Símbolos", "<span style = \"color: #469990;\">" + token + "</span>"},
+            {"Operadores", "<span style = \"color: #911eb4;\">" + token + "</span>"},
+            {"Identificadores", "<span style = \"color: #3cb44b;\">" + token + "</span>"},
+            {"Especiales", "<span style = \"color: #9A6324;\">" + token + "</span>"},
+            {"Comentarios", "<span style = \"color: #808000;\">" + token + "</span>"},
+            {"Palabras reservadas", "<span style = \"color: #f032e6;\">" + token + "</span>"},
+            {"Errores", "<span style = \"color: #e6194B;\">" + token + "</span>"},
+            {"Espacio", " "},
+            {"SaltoDeLinea", "<br>"}
+    };
+    return typeHTML.find(type)->second;
+}
+
 // Creates an HTML file to show the output
 void createFile(Token tokens) {
-    fstream CreateFile(R"(C:\Users\Felix\Desktop\Tec\4to Semestre\Implementacion\Scheme\Repo\Actividad3.2\DFA.html)", ios::out);
+    fstream CreateFile(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\DFA.html)", ios::out);
     ofstream fileToken;
-    fileToken.open(R"(C:\Users\Felix\Desktop\Tec\4to Semestre\Implementacion\Scheme\Repo\Actividad3.2\DFA.html)");
+    fileToken.open(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\DFA.html)");
     fileToken << "<!DOCTYPE HTML>\n"
                  "<html lang=\"en\">\n"
                  "  <head>\n"
@@ -45,21 +64,12 @@ void createFile(Token tokens) {
                  "  <meta name=\"description\" content=\"A page for exploring basic HTML documents\">\n"
                  "  <title>Basic HTML document</title>\n"
                  "  </head>\n"
-                 "  <body>\n"<<endl;
+                 "  <body style = \"justify-content: center; text-align: center; align-items: center; font-size: 40px;\">\n"<<endl;
     for (int i = 0; i < tokens.getSize(); i++) {
-        fileToken<<tokens.getTokenString(i) <<  "," << tokens.getTokenType(i) << endl;
+        fileToken<<createHTML(tokens.getTokenString(i), tokens.getTokenType(i)) << endl;
     }
-    fileToken <<  "    <h1>Page content</h1>\n"
-                  "  </body>\n"
-                  "</html>"<<endl;
+    fileToken <<  "</body>\n</html>";
 }
-
-string createHTML(string token, string type){
-
-    return "<html>";
-}
-
-
 
 int main() {
     vector<string> linesString = readFile();
