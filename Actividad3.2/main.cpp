@@ -17,7 +17,7 @@ using namespace std;
 
 vector<string> readFile() {
     ifstream archivo;
-    archivo.open(R"(C:\Users\david\Desktop\Trabajos\Semestre_4_carrera\Implementacion_MC\ImplementacionMC\Actividad3.2\expresiones.txt)", ios::in);
+    archivo.open("expresiones.txt", ios::in);
     if (archivo.fail()) {
         cout << "El archivo no se pudo abrir" << endl;
         exit(1);
@@ -54,9 +54,9 @@ string createHTML(string token, string type){
 
 // Creates an HTML file to show the output.
 void createFile(Token tokens) {
-    fstream CreateFile(R"(C:\Users\david\Desktop\Trabajos\Semestre_4_carrera\Implementacion_MC\ImplementacionMC\Actividad3.2\DFA.html)", ios::out);
+    fstream CreateFile("DFA.HTML", ios::out);
     ofstream fileToken;
-    fileToken.open(R"(C:\Users\david\Desktop\Trabajos\Semestre_4_carrera\Implementacion_MC\ImplementacionMC\Actividad3.2\DFA.html)");
+    fileToken.open("DFA.HTML");
     fileToken << "<!DOCTYPE HTML>\n"
                  "<html lang=\"en\">\n"
                  "  <head>\n"
@@ -83,6 +83,5 @@ int main() {
     Token tokens = lexerMachine.lexer(Lines);
     tokens.tokenPrint();
     createFile(tokens);
-    system(R"(C:\Users\david\Desktop\Trabajos\Semestre_4_carrera\Implementacion_MC\ImplementacionMC\Actividad3.2\DFA.html)");
     return 0;
 }
