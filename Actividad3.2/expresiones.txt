@@ -1,11 +1,11 @@
-define(x==5 + a7); esto es una funcion 138/()
+define(x==5 + a7) #t#f; esto es #t#f una funcion 'soyUnSimbolo define + * / - = == ^2 y = ;2  138/()847ncab
 
-'soyUnSimbolo + 50
+define'soyUnSimbolo + 50 #t #f
 
-10 + 25
+10+25
 
-variable = 40;
+variable = 40 #f;
 
-a7+3jnf 
+a7+3jnf
 
-y = 5 + 3b * (3a/3b) ^ 2
+y=5+3b*(3a/3#t#fb)^2
