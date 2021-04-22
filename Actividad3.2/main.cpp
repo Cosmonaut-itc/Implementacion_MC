@@ -54,9 +54,9 @@ string createHTML(string token, string type){
 
 // Creates an HTML file to show the output
 void createFile(Token tokens) {
-    fstream CreateFile(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\DFA.html)", ios::out);
+    fstream CreateFile("DFA.html)", ios::out);
     ofstream fileToken;
-    fileToken.open(R"(C:\Users\david\Desktop\Trabajos\Semestre 4 carrera\Implementacion MC\ImplementacionMC\Actividad3.2\DFA.html)");
+    fileToken.open("DFA.html)");
     fileToken << "<!DOCTYPE HTML>\n"
                  "<html lang=\"en\">\n"
                  "  <head>\n"
@@ -66,7 +66,7 @@ void createFile(Token tokens) {
                  "  </head>\n"
                  "  <body style = \"justify-content: center; text-align: center; align-items: center; font-size: 40px;\">\n"<<endl;
     for (int i = 0; i < tokens.getSize(); i++) {
-        fileToken<<createHTML(tokens.getTokenString(i), tokens.getTokenType(i)) << endl;
+        fileToken<<createHTML(tokens.getTokenString(i), tokens.getTokenType(i));
     }
     fileToken <<  "</body>\n</html>";
 }
@@ -83,5 +83,6 @@ int main() {
     Token tokens = lexerMachine.lexer(Lines);
     tokens.tokenPrint();
     createFile(tokens);
+    system("DFA.html)");
     return 0;
 }
