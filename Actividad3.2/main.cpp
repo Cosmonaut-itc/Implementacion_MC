@@ -52,7 +52,7 @@ string createHTML(string token, string type){
     return typeHTML.find(type)->second;
 }
 
-// Creates an HTML file to show the output
+// Creates an HTML file to show the output.
 void createFile(Token tokens) {
     fstream CreateFile("DFA.html)", ios::out);
     ofstream fileToken;
