@@ -8,8 +8,8 @@
 
 StateMachine::StateMachine() {
     this->currentState = 0;
-    this->currentChar = '\n';
-    this->currentCharType = "SaltoDeLinea";
+    this->currentChar = '\0';
+    this->currentCharType = "Null";
     // Add reserved words
     this->reservedWords = {
             {"define", 1}
@@ -367,7 +367,7 @@ Token StateMachine::lexer(const vector<InputLine> &Lines) {
             }
 
             // Print operator from the initial state
-            if (currentState == 0 && currentCharType != "Espacio" && currentCharType != "SaltoDeLinea") {
+            if (currentState == 0 && currentCharType != "Espacio" && currentCharType != "SaltoDeLinea" && currentCharType != "Null") {
                 addCurrentToTokens();
             }
             if (currentState == 0 && (currentCharType == "Espacio" || currentCharType == "SaltoDeLinea")) {
