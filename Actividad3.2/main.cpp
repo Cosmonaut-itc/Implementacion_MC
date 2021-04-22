@@ -17,7 +17,7 @@ using namespace std;
 
 vector<string> readFile() {
     ifstream archivo;
-    archivo.open("expresiones.txt", ios::in);
+    archivo.open(R"(C:\Users\david\Desktop\Trabajos\Semestre_4_carrera\Implementacion_MC\ImplementacionMC\Actividad3.2\expresiones.txt)", ios::in);
     if (archivo.fail()) {
         cout << "El archivo no se pudo abrir" << endl;
         exit(1);
@@ -37,15 +37,15 @@ vector<string> readFile() {
 // Convierte la información del Token a HTML+CSS
 string createHTML(string token, string type){
     std::map<string, string> typeHTML{
-            {"Números", "<span style = \"color: #ffe119;\">" + token + "</span>"},
-            {"Lógicos", "<span style = \"color: #4363d8;\">" + token + "</span>"},
-            {"Símbolos", "<span style = \"color: #469990;\">" + token + "</span>"},
-            {"Operadores", "<span style = \"color: #911eb4;\">" + token + "</span>"},
-            {"Identificadores", "<span style = \"color: #3cb44b;\">" + token + "</span>"},
-            {"Especiales", "<span style = \"color: #9A6324;\">" + token + "</span>"},
-            {"Comentarios", "<span style = \"color: #808000;\">" + token + "</span>"},
-            {"Palabras reservadas", "<span style = \"color: #f032e6;\">" + token + "</span>"},
-            {"Errores", "<span style = \"color: #e6194B;\">" + token + "</span>"},
+            {"Números", "<span style = \"color: #ffe119;\">" + token + "</span>"}, // amarillo
+            {"Lógicos", "<span style = \"color: #4363d8;\">" + token + "</span>"}, // azul marino
+            {"Símbolos", "<span style = \"color: #469990;\">" + token + "</span>"}, // verde turquesa
+            {"Operadores", "<span style = \"color: #911eb4;\">" + token + "</span>"}, // morado fuerte
+            {"Identificadores", "<span style = \"color: #3cb44b;\">" + token + "</span>"}, // verde normal
+            {"Especiales", "<span style = \"color: #9A6324;\">" + token + "</span>"}, // cafe
+            {"Comentarios", "<span style = \"color: #808000;\">" + token + "</span>"}, // amarillo cafesoso
+            {"Palabras reservadas", "<span style = \"color: #f032e6;\">" + token + "</span>"}, // morado bajito
+            {"Errores", "<span style = \"color: #e6194B;\">" + token + "</span>"}, // rojo
             {"Espacio", " "},
             {"SaltoDeLinea", "<br>"}
     };
@@ -54,9 +54,9 @@ string createHTML(string token, string type){
 
 // Creates an HTML file to show the output.
 void createFile(Token tokens) {
-    fstream CreateFile("DFA.html)", ios::out);
+    fstream CreateFile(R"(C:\Users\david\Desktop\Trabajos\Semestre_4_carrera\Implementacion_MC\ImplementacionMC\Actividad3.2\DFA.html)", ios::out);
     ofstream fileToken;
-    fileToken.open("DFA.html)");
+    fileToken.open(R"(C:\Users\david\Desktop\Trabajos\Semestre_4_carrera\Implementacion_MC\ImplementacionMC\Actividad3.2\DFA.html)");
     fileToken << "<!DOCTYPE HTML>\n"
                  "<html lang=\"en\">\n"
                  "  <head>\n"
@@ -83,6 +83,6 @@ int main() {
     Token tokens = lexerMachine.lexer(Lines);
     tokens.tokenPrint();
     createFile(tokens);
-    system("DFA.html)");
+    system(R"(C:\Users\david\Desktop\Trabajos\Semestre_4_carrera\Implementacion_MC\ImplementacionMC\Actividad3.2\DFA.html)");
     return 0;
 }
