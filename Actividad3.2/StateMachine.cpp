@@ -105,6 +105,7 @@ StateMachine::StateMachine() {
             {"False",                 3},
             {"True",                  3},
             {"Quote",                 3},
+            {"Hashtag",               3},
             // Escape characters
             {"SaltoDeLinea",          0},
     };
