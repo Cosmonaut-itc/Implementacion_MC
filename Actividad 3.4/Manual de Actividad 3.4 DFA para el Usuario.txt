@@ -1,0 +1,29 @@
+# Manual de Avtividad 3.2 
+## Requerimientos:
+-Lenguajes:
+  - C++
+-Archivos:
+  - main.cpp
+  - CharacterData.cpp
+  - CharacterData.h
+  - InputLine.cpp
+  - InputLine.h
+  - StateMachine.cpp
+  - StateMachine.h
+  - Token.cpp
+  - Toke.h
+-Archivos Extras:
+  - espresiones.txt
+ 
+### Proceso
+Para poder ejecutar el programa de manera correcta, se necesita cambiar el path del archivo "expresiones.txt" encontrado en "main.cpp".
+El archivo "expresiones.txt" tiene que contener las expresiones que se deseen evaluar, no importa el orden ni la posicion. Asi mismo, tambien
+tiene que cambiar el path del archivo de salida, igualmente encontrado en "main.cpp", el cual debe ser llamado
+"DFA.html" y la ruta especificada para que se guarde en el directorio deseado. El archivo de salida en cuestion es un html llamado DFA que continen
+las expresiones evaluadas con su Token y su color asignado.
+
+En el archivo "Actividad_3_4_MaquinaDeEstados.png" se encuentra el modelo de la maquina de estados.
+
+Link del video: 
+
+ 
