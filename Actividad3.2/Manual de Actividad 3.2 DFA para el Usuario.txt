@@ -11,23 +11,46 @@
   - StateMachine.cpp
   - StateMachine.h
   - Token.cpp
-  - Toke.h
+  - Token.h
 -Archivos Extras:
-  - espresiones.txt
--Programas:
-  - Excel
- 
+  - expresiones.txt
+
 ### Proceso
-Para poder ejecutar el programa de manera correcta, se necesita cambiar el path del archivo "expresiones.txt" encontrado en "main.cpp".
-El archivo "expresiones.txt" tiene que contener las expresiones que se deseen evaluar, no importa el orden ni la posicion. Asi mismo, tambien
-tiene que cambiar el path del archivo de salida, igualmente encontrado en "main.cpp". El archivo de salida en cuestion es un .csv llamado DFA que continen
-las expresiones evaluadas y separadas en la columna "Tokens" y "Type". En "Tokens" estan las expresiones evaluadas separadas por caracteres, y en
-la columa "Type" tiene el tipo de cada uno de los "Tokens".
+Para ejecutar el programa en Mac:
+Requisitos command line tools de xcode, si no las tiene instaladas seguir: https://www.embarcadero.com/starthere/xe5/mobdevsetup/ios/en/installing_the_commandline_tools.html
 
-En el archivo "Actividad_3_2_MaquinaDeEstados.docx" se encuentra el modelo de la maquina de estados, y en el archivo "Tabla_alfabeto_automata.xlsx" 
-se encuentra la tabla de estados en excel.
+Descargar el zip
+Descomprimir el zip
+Guardar la carpeta obtenida "Actividad_3.4" al descomprimir el zip en documentos (Guardarla en documentos para poder usar los comandos siguientes)
+Abrir terminal
+Correr los siguientes comandos
 
+En ingles:
+cd documents
+En español:
+cd documentos
 
-Link del video: https://youtu.be/JcNZzi4mxhg
+cd Actividad_3.4
 
- 
+g++ -std=c++11 CharacterData.cpp CharacterData.h InputLine.cpp InputLine.h StateMachine.cpp StateMachine.h Token.cpp Token.h main.cpp
+
+./a.out
+
+Una vez corridos estos comandos se puede ver en la terminal el resultado del programa
+Para ver el resultado en html correr el siguiente comando en la misma ventana de la terminal
+
+open DFA.html
+
+Se abrirá una ventana en un sitio web con el resultado del programa en html con cada elemento pintado de un color distinto
+
+Para modificar el archivo de entrada:
+En la misma ventana de terminal escribir:
+
+open expresiones.txt
+
+Se abrirá una ventana con un editor de texto, aquí se puede cambiar el texto, guardar el archivo con command+s y volver a corre le programa como se indica anteriormente
+
+En el archivo "Actividad_3_4_MaquinaDeEstados.png" se encuentra el modelo de la maquina de estados.
+
+Link del video:
+https://youtu.be/Kx1Twq8UrJs

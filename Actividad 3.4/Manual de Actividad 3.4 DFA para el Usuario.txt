@@ -25,5 +25,4 @@ las expresiones evaluadas con su Token y su color asignado.
 En el archivo "Actividad_3_4_MaquinaDeEstados.png" se encuentra el modelo de la maquina de estados.
 
 Link del video: 
-
- 
+https://youtu.be/Kx1Twq8UrJs

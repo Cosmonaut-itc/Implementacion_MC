@@ -48,6 +48,7 @@ StateMachine::StateMachine() {
             {"Dígito",                5},
             {"Resta",                 4},
             {"PuntoYComa",            3},
+            {"Hashtag",               11},
             {"Quote",                 13},
             // Escape characters
             {"Division",              0},
@@ -241,8 +242,8 @@ StateMachine::StateMachine() {
             {"Suma",                  0},
             {"Multiplicacion",        0},
             {"Potencia",              0},
-            {"Parentesis que abre",   0},
-            {"Parentesis que cierra", 0},
+            {"Parentesis que abre",   1},
+            {"Parentesis que cierra", 1},
             {"SaltoDeLinea",          0},
             {"Asignacion",            0},
             {"Division",              0},
@@ -280,6 +281,8 @@ StateMachine::StateMachine() {
             {"SaltoDeLinea",   0},
             // State only escape characters
             {"Quote",          13},
+            {"Parentesis que abre",   1},
+            {"Parentesis que cierra", 1},
     };
 
     stateNames.emplace_back("Operadores");
