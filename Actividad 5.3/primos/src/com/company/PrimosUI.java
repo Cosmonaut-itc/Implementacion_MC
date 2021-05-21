@@ -59,7 +59,10 @@ public class PrimosUI {
                     }
                     long endTime = System.currentTimeMillis();
                     long totalTime = endTime - startTime;
+                    System.out.println("Multi thread");
+                    System.out.println("Time:");
                     System.out.println(totalTime);
+                    System.out.println("Result:");
                     System.out.println(resultadoFinal);
                 } catch (NumberFormatException ex) {
                     Logger.getLogger(PrimosUI.class.getName()).log(Level.SEVERE, null, e);

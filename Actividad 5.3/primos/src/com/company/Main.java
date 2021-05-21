@@ -6,7 +6,7 @@ public class Main {
         if (n < 2) {
             return false;
         }
-        if (n == 2){
+        if (n == 2) {
             return true;
         }
 
@@ -19,13 +19,19 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
+        long startTime = System.currentTimeMillis();
         long sum = 0;
         for (int i = 0; i < 5000000; i++) {
             if (primo(i)) {
                 sum += i;
             }
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+        System.out.println("Single thread");
+        System.out.println("Time:");
+        System.out.println(totalTime);
+        System.out.println("Result:");
         System.out.println(sum);
     }
 }
