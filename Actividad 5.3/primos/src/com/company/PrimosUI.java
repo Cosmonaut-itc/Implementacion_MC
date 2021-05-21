@@ -10,6 +10,7 @@ public class PrimosUI {
     private JButton button1;
     private JPanel panel1;
     private JButton singleThreadButton;
+    private JTextField textField1;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("PrimosUI");
@@ -30,7 +31,7 @@ public class PrimosUI {
                 try {
                     int threads = Runtime.getRuntime().availableProcessors();
                     primoMultiThread[] Hilos = new primoMultiThread[threads];
-                    int numero = 5000000;
+                    int numero = Integer.parseInt(textField1.getText());
                     int rango = Math.abs(numero / threads);
                     int rangoInicial = 0;
                     for (int i = 0; i < threads; i++) {
@@ -77,7 +78,8 @@ public class PrimosUI {
         singleThreadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[] args = new String[0];
+                String[] args = new String[1];
+                args[0] = textField1.getText();
                 Main.main(args);
             }
         });

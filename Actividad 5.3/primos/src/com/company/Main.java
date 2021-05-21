@@ -20,8 +20,9 @@ public class Main {
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
+        int numeroSumar = Integer.parseInt(args[0]);
         long sum = 0;
-        for (int i = 0; i < 5000000; i++) {
+        for (int i = 0; i < numeroSumar; i++) {
             if (primo(i)) {
                 sum += i;
             }
