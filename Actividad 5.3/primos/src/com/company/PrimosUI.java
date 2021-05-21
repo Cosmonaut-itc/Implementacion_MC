@@ -25,20 +25,17 @@ public class PrimosUI {
                 System.out.println("Inicio");
                 String entrada = button1.getText();
                 try {
-                    int nHilos = Integer.parseInt(entrada);
-                    System.out.println("Numero de Hilos: " + nHilos);
-                    primoMultiThread[] Hilos = new primoMultiThread[nHilos];
-
                     int threads = 14;
+                    primoMultiThread[] Hilos = new primoMultiThread[threads];
                     int numero = 5000000;
-                    int rango =  Math.abs(numero / threads);
+                    int rango = Math.abs(numero / threads);
                     int rangoInicial = 0;
-                    for(int i = 0; i< threads; i++){
+                    for (int i = 0; i < threads; i++) {
                         int r1 = rangoInicial;
                         int r2;
-                        if(i == threads -1){
+                        if (i == threads - 1) {
                             r2 = numero;
-                        }else {
+                        } else {
                             r2 = rangoInicial + rango;
                         }
                         rangoInicial = r2;
@@ -47,22 +44,25 @@ public class PrimosUI {
                     }
 
 
-                    for (int i=0; i<nHilos; i++){
+                    for (int i = 0; i < threads; i++) {
                         try {
                             Hilos[i].join();
-                        }catch (InterruptedException ex){
+                        } catch (InterruptedException ex) {
                             Logger.getLogger(PrimosUI.class.getName()).log(Level.SEVERE, null, e);
                         }
                     }
-                    for (int i=0; i<nHilos; i++){
-                        System.out.println(Hilos[i].getResultado());
+                    long resultadoFinal = 0;
+                    for (int i = 0; i < threads; i++) {
+                        resultadoFinal += Hilos[i].getResultado();
                     }
-                } catch (NumberFormatException ex){
+                    System.out.println(resultadoFinal);
+                } catch (NumberFormatException ex) {
                     Logger.getLogger(PrimosUI.class.getName()).log(Level.SEVERE, null, e);
                 }
 
             }
-            public void formWindowClosing(java.awt.event.WindowEvent event){
+
+            public void formWindowClosing(java.awt.event.WindowEvent event) {
                 System.out.println("Terminado");
             }
         });
