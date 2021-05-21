@@ -39,11 +39,15 @@ public class PrimosUI {
                 int threads = 14;
                 int numero = 5000000;
                 int rango =  Math.abs(numero / threads);
-                int reminder = threads * rango - numero;
                 int rangoInicial = 0;
                 for(int i = 0; i< threads; i++){
                     int r1 = rangoInicial;
-                    int r2 = rangoInicial + rango;
+                    int r2;
+                    if(i == threads -1){
+                        r2 = numero;
+                    }else {
+                        r2 = rangoInicial + rango;
+                    }
                     rangoInicial = r2;
                 }
             }
