@@ -25,7 +25,7 @@ public class PrimosUI {
                 System.out.println("Inicio");
                 String entrada = button1.getText();
                 try {
-                    int threads = 14;
+                    int threads = Runtime.getRuntime().availableProcessors() - 1;
                     primoMultiThread[] Hilos = new primoMultiThread[threads];
                     int numero = 5000000;
                     int rango = Math.abs(numero / threads);
