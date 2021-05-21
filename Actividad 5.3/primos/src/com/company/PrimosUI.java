@@ -36,7 +36,16 @@ public class PrimosUI {
                 } catch (NumberFormatException ex){
                     Logger.getLogger(PrimosUI.class.getName()).log(Level.SEVERE, null, e);
                 }
-
+                int threads = 14;
+                int numero = 5000000;
+                int rango =  Math.abs(numero / threads);
+                int reminder = threads * rango - numero;
+                int rangoInicial = 0;
+                for(int i = 0; i< threads; i++){
+                    int r1 = rangoInicial;
+                    int r2 = rangoInicial + rango;
+                    rangoInicial = r2;
+                }
             }
             public void formWindowClosing(java.awt.event.WindowEvent event){
                 System.out.println("Terminado");
