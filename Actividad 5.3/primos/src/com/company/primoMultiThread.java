@@ -26,4 +26,8 @@ public class primoMultiThread extends Thread{
         }
         this.resultado = sum;
     }
+
+    public long getResultado() {
+        return resultado;
+    }
 }

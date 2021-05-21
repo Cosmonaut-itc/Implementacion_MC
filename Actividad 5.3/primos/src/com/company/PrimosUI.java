@@ -10,6 +10,14 @@ public class PrimosUI {
     private JButton button1;
     private JPanel panel1;
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("PrimosUI");
+        frame.setContentPane(new PrimosUI().panel1);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
     public PrimosUI() {
         button1.addActionListener(new ActionListener() {
             @Override
@@ -21,10 +29,23 @@ public class PrimosUI {
                     System.out.println("Numero de Hilos: " + nHilos);
                     primoMultiThread[] Hilos = new primoMultiThread[nHilos];
 
-                    for (int i=0 ; i<nHilos; i++) {
-                       // Hilos[i] = new primoMultiThread(int, bool, int, int); *Aqui se inicializa el constructor de la clase con sus parametros
+                    int threads = 14;
+                    int numero = 5000000;
+                    int rango =  Math.abs(numero / threads);
+                    int rangoInicial = 0;
+                    for(int i = 0; i< threads; i++){
+                        int r1 = rangoInicial;
+                        int r2;
+                        if(i == threads -1){
+                            r2 = numero;
+                        }else {
+                            r2 = rangoInicial + rango;
+                        }
+                        rangoInicial = r2;
+                        Hilos[i] = new primoMultiThread(i, true, r1, r2);
                         Hilos[i].start();
                     }
+
 
                     for (int i=0; i<nHilos; i++){
                         try {
@@ -33,23 +54,13 @@ public class PrimosUI {
                             Logger.getLogger(PrimosUI.class.getName()).log(Level.SEVERE, null, e);
                         }
                     }
+                    for (int i=0; i<nHilos; i++){
+                        System.out.println(Hilos[i].getResultado());
+                    }
                 } catch (NumberFormatException ex){
                     Logger.getLogger(PrimosUI.class.getName()).log(Level.SEVERE, null, e);
                 }
-                int threads = 14;
-                int numero = 5000000;
-                int rango =  Math.abs(numero / threads);
-                int rangoInicial = 0;
-                for(int i = 0; i< threads; i++){
-                    int r1 = rangoInicial;
-                    int r2;
-                    if(i == threads -1){
-                        r2 = numero;
-                    }else {
-                        r2 = rangoInicial + rango;
-                    }
-                    rangoInicial = r2;
-                }
+
             }
             public void formWindowClosing(java.awt.event.WindowEvent event){
                 System.out.println("Terminado");
