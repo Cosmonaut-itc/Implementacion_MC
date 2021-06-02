@@ -1,0 +1,56 @@
+# Manual de Avtividad 3.2 
+## Requerimientos:
+-Lenguajes:
+  - C++
+-Archivos:
+  - main.cpp
+  - CharacterData.cpp
+  - CharacterData.h
+  - InputLine.cpp
+  - InputLine.h
+  - StateMachine.cpp
+  - StateMachine.h
+  - Token.cpp
+  - Token.h
+-Archivos Extras:
+  - expresiones.txt
+
+### Proceso
+Para ejecutar el programa en Mac:
+Requisitos command line tools de xcode, si no las tiene instaladas seguir: https://www.embarcadero.com/starthere/xe5/mobdevsetup/ios/en/installing_the_commandline_tools.html
+
+Descargar el zip
+Descomprimir el zip
+Guardar la carpeta obtenida "Actividad_3.4" al descomprimir el zip en documentos (Guardarla en documentos para poder usar los comandos siguientes)
+Abrir terminal
+Correr los siguientes comandos
+
+En ingles:
+cd documents
+En español:
+cd documentos
+
+cd Actividad_3.4
+
+g++ -std=c++11 CharacterData.cpp CharacterData.h InputLine.cpp InputLine.h StateMachine.cpp StateMachine.h Token.cpp Token.h main.cpp
+
+./a.out
+
+Una vez corridos estos comandos se puede ver en la terminal el resultado del programa
+Para ver el resultado en html correr el siguiente comando en la misma ventana de la terminal
+
+open DFA.html
+
+Se abrirá una ventana en un sitio web con el resultado del programa en html con cada elemento pintado de un color distinto
+
+Para modificar el archivo de entrada:
+En la misma ventana de terminal escribir:
+
+open expresiones.txt
+
+Se abrirá una ventana con un editor de texto, aquí se puede cambiar el texto, guardar el archivo con command+s y volver a corre le programa como se indica anteriormente
+
+En el archivo "Actividad_3_4_MaquinaDeEstados.png" se encuentra el modelo de la maquina de estados.
+
+Link del video:
+https://youtu.be/Kx1Twq8UrJs
