@@ -20,11 +20,11 @@ vector<string> readFile() {
     archivo.open("expresiones.txt", ios::in);
     if (archivo.fail()) {
         cout << "El archivo no se pudo abrir" << endl;
-        exit(1);
+        //exit(1);
     }
     string texto;
     vector<string> words;
-    string word = "";
+    string word;
     while (!archivo.eof()) {
         getline(archivo, texto);
         texto += '\n';
@@ -35,7 +35,7 @@ vector<string> readFile() {
 }
 
 // Convierte la información del Token a HTML+CSS
-string createHTML(string token, string type){
+string createHTML(const string& token, const string& type){
     std::map<string, string> typeHTML{
             {"Números", "<span style = \"color: #ffe119;\">" + token + "</span>"}, // amarillo
             {"Lógicos", "<span style = \"color: #4363d8;\">" + token + "</span>"}, // azul marino
