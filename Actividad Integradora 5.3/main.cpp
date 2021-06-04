@@ -9,15 +9,33 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <condition_variable>
+#include <cstdlib>
+#include <mutex>
+#include <thread>
+#include <unistd.h>
 #include "Token.h"
 #include "InputLine.h"
 #include "StateMachine.h"
 
 using namespace std;
 
-vector<string> readFile() {
+//Path of files buffer
+vector<string> filesPath;
+mutex filesMutex;
+condition_variable filesCv;
+bool fileEmpty = false;
+
+
+// Token buffer
+vector<Token> tokens;
+mutex tokensMutex;
+condition_variable tokensCv;
+int fileNum = 0;
+
+vector<string> readFile(const string &path) {
     ifstream archivo;
-    archivo.open("expresiones.txt", ios::in);
+    archivo.open(path, ios::in);
     if (archivo.fail()) {
         cout << "El archivo no se pudo abrir" << endl;
         //exit(1);
@@ -35,28 +53,29 @@ vector<string> readFile() {
 }
 
 // Convierte la información del Token a HTML+CSS
-string createHTML(const string& token, const string& type){
+string createHTML(const string &token, const string &type) {
     std::map<string, string> typeHTML{
-            {"Números", "<span style = \"color: #ffe119;\">" + token + "</span>"}, // amarillo
-            {"Lógicos", "<span style = \"color: #4363d8;\">" + token + "</span>"}, // azul marino
-            {"Símbolos", "<span style = \"color: #469990;\">" + token + "</span>"}, // verde turquesa
-            {"Operadores", "<span style = \"color: #911eb4;\">" + token + "</span>"}, // morado fuerte
-            {"Identificadores", "<span style = \"color: #3cb44b;\">" + token + "</span>"}, // verde normal
-            {"Especiales", "<span style = \"color: #9A6324;\">" + token + "</span>"}, // cafe
-            {"Comentarios", "<span style = \"color: #808000;\">" + token + "</span>"}, // amarillo cafesoso
+            {"Números",             "<span style = \"color: #ffe119;\">" + token + "</span>"}, // amarillo
+            {"Lógicos",             "<span style = \"color: #4363d8;\">" + token + "</span>"}, // azul marino
+            {"Símbolos",            "<span style = \"color: #469990;\">" + token + "</span>"}, // verde turquesa
+            {"Operadores",          "<span style = \"color: #911eb4;\">" + token + "</span>"}, // morado fuerte
+            {"Identificadores",     "<span style = \"color: #3cb44b;\">" + token + "</span>"}, // verde normal
+            {"Especiales",          "<span style = \"color: #9A6324;\">" + token + "</span>"}, // cafe
+            {"Comentarios",         "<span style = \"color: #808000;\">" + token + "</span>"}, // amarillo cafesoso
             {"Palabras reservadas", "<span style = \"color: #f032e6;\">" + token + "</span>"}, // morado bajito
-            {"Errores", "<span style = \"color: #e6194B;\">" + token + "</span>"}, // rojo
-            {"Espacio", " "},
-            {"SaltoDeLinea", "<br>"}
+            {"Errores",             "<span style = \"color: #e6194B;\">" + token + "</span>"}, // rojo
+            {"Espacio",             " "},
+            {"SaltoDeLinea",        "<br>"}
     };
     return typeHTML.find(type)->second;
 }
 
 // Creates an HTML file to show the output.
-void createFile(Token tokens) {
-    fstream CreateFile("DFA.HTML", ios::out);
+void createFile(Token tokens, int number) {
+    string fileName = "DFA" + to_string(number) + ".HTML";
+    fstream CreateFile(fileName, ios::out);
     ofstream fileToken;
-    fileToken.open("DFA.HTML");
+    fileToken.open(fileName);
     fileToken << "<!DOCTYPE HTML>\n"
                  "<html lang=\"en\">\n"
                  "  <head>\n"
@@ -64,24 +83,129 @@ void createFile(Token tokens) {
                  "  <meta name=\"description\" content=\"A page for exploring basic HTML documents\">\n"
                  "  <title>Basic HTML document</title>\n"
                  "  </head>\n"
-                 "  <body style = \"justify-content: center; text-align: center; align-items: center; font-size: 40px;\">\n"<<endl;
+                 "  <body style = \"justify-content: center; text-align: center; align-items: center; font-size: 40px;\">\n"
+              << endl;
     for (int i = 0; i < tokens.getSize(); i++) {
-        fileToken<<createHTML(tokens.getTokenString(i), tokens.getTokenType(i));
+        fileToken << createHTML(tokens.getTokenString(i), tokens.getTokenType(i));
     }
-    fileToken <<  "</body>\n</html>";
+    fileToken << "</body>\n</html>";
+}
+
+void consumeTokens() {
+    while (!fileEmpty || !tokens.empty()) {
+        Token currentToken;
+        {
+            std::unique_lock<mutex> tokensUl(tokensMutex);
+            tokensCv.wait(tokensUl, [] { return (!tokens.empty()); });
+            currentToken = tokens.back();
+            tokens.pop_back();
+        }
+        //token.tokenPrint();
+        createFile(currentToken, fileNum);
+        fileNum++;
+    }
+}
+
+void produceTokens() {
+    // Read archives buffer
+    while (!filesPath.empty()) {
+        vector<string> linesString;
+        string currentFilePath;
+        {
+            // Read filesPath vector (protected by mutex)
+            std::lock_guard<mutex> filesPathLg(filesMutex);
+            currentFilePath = filesPath.back();
+            filesPath.pop_back();
+        }
+        //Consume lines
+        linesString = readFile(currentFilePath);
+        vector<InputLine> Lines;
+        StateMachine lexerMachine;
+        Token currentToken;
+        for (auto const &line: linesString) {
+            InputLine currentLine(line);
+            Lines.push_back(currentLine);
+        }
+        currentToken = lexerMachine.lexer(Lines);
+        std::lock_guard<mutex> lg(tokensMutex);
+        tokens.emplace_back(currentToken);
+        tokensCv.notify_one();
+    }
+    fileEmpty = true;
+
+}
+
+
+void createTokens(int start, int end) {
+    for (int i = start; i < end; i++) {
+        // Read archives buffer
+        vector<string> linesString = readFile(filesPath[i]);
+        //Consume lines
+        vector<InputLine> Lines;
+        StateMachine lexerMachine;
+        for (auto const &line: linesString) {
+            InputLine currentLine(line);
+            Lines.push_back(currentLine);
+        }
+        //token.tokenPrint();
+        createFile(lexerMachine.lexer(Lines), i);
+    }
+}
+
+void parallelProcessing(unsigned int numParallelThreads) {
+    //Thread vector
+    vector<thread> threads;
+    //Reserve number of threads
+    threads.reserve(numParallelThreads);
+    // Calculate amount of iterations per thread
+    int part = filesPath.size() / numParallelThreads;
+
+    for (int i = 0; i < numParallelThreads - 1; i++) {
+        int inicio = (part * i);
+        int fin = (part * i) + part;
+        threads.emplace_back(createTokens, inicio, fin);
+    }
+    threads.emplace_back(createTokens, (numParallelThreads - 1) * part, filesPath.size());
+    for (auto &t : threads) {
+        t.join();
+    }
+}
+
+void producerConsumer(int numProducerThreads, int numConsumerThreads) {
+    //Thread vector
+    vector<thread> threads;
+    //Reserve number of threads
+    threads.reserve(numProducerThreads + numConsumerThreads);
+    for (int i = 0; i < numProducerThreads; i++) {
+        threads.emplace_back(produceTokens);
+    }
+    for (int i = 0; i < numConsumerThreads; i++) {
+        threads.emplace_back(consumeTokens);
+    }
+    for (auto &t : threads) {
+        t.join();
+    }
 }
 
 int main() {
-    vector<string> linesString = readFile();
-    vector<InputLine> Lines;
-    StateMachine lexerMachine;
-
-    for (auto const &line: linesString) {
-        InputLine currentLine(line);
-        Lines.push_back(currentLine);
+    //Read all files inside the directory InputFiles
+    std::string path = "./InputFiles";
+    for (const auto &entry : std::filesystem::directory_iterator(path)) {
+        filesPath.push_back(entry.path());
     }
-    Token tokens = lexerMachine.lexer(Lines);
-    tokens.tokenPrint();
-    createFile(tokens);
+    // Number of threads
+    int numProducerThreads = 8;
+    int numConsumerThreads = 8;
+    int numParallelThreads = 16;
+
+    auto start = chrono::steady_clock::now();
+    //producerConsumer(numProducerThreads, numConsumerThreads);
+    parallelProcessing(numParallelThreads);
+    //produceTokens(0, filesPath.size());
+    auto end = chrono::steady_clock::now();
+
+    cout << "Elapsed time in milliseconds: "
+         << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+         << " ms" << endl;
     return 0;
 }
