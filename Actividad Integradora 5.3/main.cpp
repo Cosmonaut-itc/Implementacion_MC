@@ -9,11 +9,8 @@
 #include <fstream>
 #include <string>
 #include <map>
-#include <condition_variable>
-#include <cstdlib>
 #include <mutex>
 #include <thread>
-#include <unistd.h>
 #include "Token.h"
 #include "InputLine.h"
 #include "StateMachine.h"
@@ -23,7 +20,6 @@ using namespace std;
 //Path of files buffer
 vector<string> filesPath;
 mutex filesMutex;
-condition_variable filesCv;
 bool fileEmpty = false;
 
 
@@ -136,7 +132,7 @@ void produceTokens() {
 }
 
 
-void createTokens(int start, int end) {
+void createTokens(unsigned int start, unsigned int end) {
     for (int i = start; i < end; i++) {
         // Read archives buffer
         vector<string> linesString = readFile(filesPath[i]);
@@ -158,11 +154,11 @@ void parallelProcessing(unsigned int numParallelThreads) {
     //Reserve number of threads
     threads.reserve(numParallelThreads);
     // Calculate amount of iterations per thread
-    int part = filesPath.size() / numParallelThreads;
+    unsigned int part = filesPath.size() / numParallelThreads;
 
-    for (int i = 0; i < numParallelThreads - 1; i++) {
-        int inicio = (part * i);
-        int fin = (part * i) + part;
+    for (unsigned int i = 0; i < numParallelThreads - 1; i++) {
+        unsigned int inicio = (part * i);
+        unsigned int fin = (part * i) + part;
         threads.emplace_back(createTokens, inicio, fin);
     }
     threads.emplace_back(createTokens, (numParallelThreads - 1) * part, filesPath.size());
@@ -171,15 +167,15 @@ void parallelProcessing(unsigned int numParallelThreads) {
     }
 }
 
-void producerConsumer(int numProducerThreads, int numConsumerThreads) {
+void producerConsumer(unsigned int numProducerThreads, unsigned int numConsumerThreads) {
     //Thread vector
     vector<thread> threads;
     //Reserve number of threads
     threads.reserve(numProducerThreads + numConsumerThreads);
-    for (int i = 0; i < numProducerThreads; i++) {
+    for (unsigned int i = 0; i < numProducerThreads; i++) {
         threads.emplace_back(produceTokens);
     }
-    for (int i = 0; i < numConsumerThreads; i++) {
+    for (unsigned int i = 0; i < numConsumerThreads; i++) {
         threads.emplace_back(consumeTokens);
     }
     for (auto &t : threads) {
@@ -189,23 +185,44 @@ void producerConsumer(int numProducerThreads, int numConsumerThreads) {
 
 int main() {
     //Read all files inside the directory InputFiles
+    vector<string> localFilesPath;
     std::string path = "./InputFiles";
     for (const auto &entry : std::filesystem::directory_iterator(path)) {
-        filesPath.push_back(entry.path());
+        localFilesPath.push_back(entry.path());
     }
+    // Copy files path to global variable
+    filesPath = localFilesPath;
+    //Get number of available threads
+    const auto processorCount = std::thread::hardware_concurrency();
     // Number of threads
-    int numProducerThreads = 8;
-    int numConsumerThreads = 8;
-    int numParallelThreads = 16;
+    unsigned int numProducerThreads = processorCount / 2;
+    unsigned int numConsumerThreads = processorCount / 2;
+    unsigned int numParallelThreads = processorCount;
 
+    // Single threaded
     auto start = chrono::steady_clock::now();
-    //producerConsumer(numProducerThreads, numConsumerThreads);
-    parallelProcessing(numParallelThreads);
-    //produceTokens(0, filesPath.size());
+    createTokens(0, filesPath.size());
     auto end = chrono::steady_clock::now();
-
-    cout << "Elapsed time in milliseconds: "
+    cout << "Single threaded elapsed time in milliseconds: "
          << chrono::duration_cast<chrono::milliseconds>(end - start).count()
          << " ms" << endl;
+
+    // Producer consumer
+    start = chrono::steady_clock::now();
+    producerConsumer(numProducerThreads, numConsumerThreads);
+    end = chrono::steady_clock::now();
+    cout << "Multithreading Producer-consumer elapsed time in milliseconds: "
+         << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+         << " ms" << endl;
+    // Copy files path to global variable
+    filesPath = localFilesPath;
+    // Parallel processing
+    start = chrono::steady_clock::now();
+    parallelProcessing(numParallelThreads);
+    end = chrono::steady_clock::now();
+    cout << "Parallel Multithreading Elapsed time in milliseconds: "
+         << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+         << " ms" << endl;
+
     return 0;
 }
