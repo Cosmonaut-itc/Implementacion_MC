@@ -161,7 +161,7 @@ void parallelProcessing(unsigned int numParallelThreads) {
         unsigned int fin = (part * i) + part;
         threads.emplace_back(createTokens, inicio, fin);
     }
-    threads.emplace_back(createTokens, (numParallelThreads - 1) * part, filesPath.size());
+    threads.emplace_back(createTokens, ((numParallelThreads - 1) * part), filesPath.size());
     for (auto &t : threads) {
         t.join();
     }
